@@ -10,7 +10,7 @@ class Wlpcontroller extends Controller
 
     public function index(){
         $wlp = WLPdetails::with('usr')->get();
-        return view('admin.wlplist');
+        return view('admin.wlplist')->with(compact('wlp'));
     }
     public function create_wlp(){
         return view('admin.createwlp');
