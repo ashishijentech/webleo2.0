@@ -17,6 +17,7 @@ class ComponentController extends Controller
 
     public function list($element_id){
         $component = Component::where('element_id',$element_id)->get();
-        dd($component);
+        #dd($component);
+        return view('superadmin.componetlist')->with(compact('component'));
     }
 }

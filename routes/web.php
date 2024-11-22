@@ -8,12 +8,14 @@ use App\Http\Controllers\ElementController;
 use App\Http\Controllers\ComponentController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+Route::middleware(['auth','role:user'])->group(function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+});
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,7 +27,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth','role:superadmin'])->group(function () {
     
     Route::get('/superadmin/dashboard',[SuperController::class,'dashboard'])->name('superadmin.dashboard');
-    Route::get('/superadmin/all-admins', [AdminController::class, 'index'])->name('superadmin.admin');
+    Route::get('/superadmin/admins-list', [AdminController::class, 'index'])->name('superadmin.admin');
+    Route::get( '/superadmin/onboard/admin', [AdminController::class, 'create'])->name('superadmin.create.admin');
+    Route::post('/superadmin/onboard/admin', [AdminController::class, 'store'])->name('superadmin.store.admin');
+    
 
     Route::get('/superadmin/create-element', [ElementController::class, 'index'])->name('superadmin.element.create');
     Route::post('/superadmin/create-element', [ElementController::class, 'store'])->name('superadmin.element.store');
@@ -38,5 +43,7 @@ Route::middleware(['auth','role:superadmin'])->group(function () {
 //agent routes
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('agent.dashboard');
+    Route::get( '/admin/onboard/wlp', [AdminController::class, 'create_wlp'])->name('admin.create.wlp');
+
 });
 require __DIR__.'/auth.php';

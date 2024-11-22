@@ -72,24 +72,32 @@
                                     <h4 class="card-title">Elements list</h4>
                                     <table class="table table-bordered">
                                         <thead class="text-white" style="background-color: #464DEE">
-                                          <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Elements name</th>
-                                            <th scope="col">Components</th>
-                                            <th scope="col">Action</th>
-                                          </tr>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Elements name</th>
+                                                <th scope="col">Components</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($element as $item)
-                                            <tr>
-                                                <th scope="row">{{$loop->iteration}}</th>
-                                                <td>{{$item->name}}</td>
-                                                <td><a href="{{route('superadmin.element.component',['element_id'=>$item->id])}}" class="btn btn-primary text-white"><i class="mdi mdi-eye"></i></a></td>
-                                                <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete" style=" font-size: 25px"></i></a> <a href="" class="btn text-info"><i class="mdi mdi-table-edit" style=" font-size: 25px"></i></a></td>
-                                              </tr>   
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>
+                                                        <a href="{{ route('superadmin.element.component', ['element_id' => $item->id]) }}"
+                                                            class="btn" data-toggle="tooltip"
+                                                            title="Click to view components list"><i class="mdi mdi-eye"
+                                                                style="font-size: 20px"></i></a>
+                                                    </td>
+                                                    <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
+                                                                style=" font-size: 20px"></i></a> <a href=""
+                                                            class="btn text-info"><i class="mdi mdi-table-edit"
+                                                                style=" font-size: 20px"></i></a></td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
-                                      </table>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -98,4 +106,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $("body").tooltip({
+                selector: '[data-toggle=tooltip]'
+            });
+        });
+    </script>
 @endsection

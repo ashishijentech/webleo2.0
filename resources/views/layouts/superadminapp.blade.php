@@ -225,52 +225,26 @@
                             <div class="submenu">
                                 <ul>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.element.create') }}">Create Elements & Component</a></li>
+                                            href="{{ route('superadmin.element.create') }}">Create Elements &
+                                            Component</a></li>
                                     <li class="nav-item"><a class="nav-link"
                                             href="pages/ui-features/typography.html">Component List</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a href="pages/forms/basic_elements.html" class="nav-link">
-                                <i class="mdi mdi-chart-areaspline menu-icon"></i>
-                                <span class="menu-title">Form Elements</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                                <i class="mdi mdi-finance menu-icon"></i>
-                                <span class="menu-title">Charts</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/tables/basic-table.html" class="nav-link">
-                                <i class="mdi mdi-grid menu-icon"></i>
-                                <span class="menu-title">Tables</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/icons/mdi.html" class="nav-link">
-                                <i class="mdi mdi-emoticon menu-icon"></i>
-                                <span class="menu-title">Icons</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="mdi mdi-codepen menu-icon"></i>
-                                <span class="menu-title">Users</span>
+                                <span class="menu-title">Onboard Admin</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="submenu">
                                 <ul class="submenu-item">
                                     <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/login.html">Users</a></li>
+                                            href="{{route('superadmin.create.admin')}}">Create Admin</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/login.html">Login</a></li>
+                                            href="{{route('superadmin.admin')}}">Admin List</a></li>
                                     <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login
                                             2</a></li>
                                     <li class="nav-item"><a class="nav-link"
