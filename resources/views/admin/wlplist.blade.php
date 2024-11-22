@@ -21,6 +21,8 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Mobile</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -29,10 +31,15 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $item->usr->name }}</td>
+                                                <td>{{ $item->usr->email }}</td>
+                                                <td>{{ $item->mobile_no }}</td>
                                                 <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
                                                             style=" font-size: 20px"></i></a> <a href=""
                                                         class="btn text-info"><i class="mdi mdi-table-edit"
-                                                            style=" font-size: 20px"></i></a></td>
+                                                            style=" font-size: 20px"></i></a>
+                                                            <a href="" class="btn"><i class="mdi mdi-eye" style=" font-size: 20px"></i></a>
+                                                        
+                                                        </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

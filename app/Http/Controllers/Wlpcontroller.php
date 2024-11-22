@@ -12,6 +12,10 @@ class Wlpcontroller extends Controller
         $wlp = WLPdetails::with('usr')->get();
         return view('admin.wlplist')->with(compact('wlp'));
     }
+
+    public function dashboard(){
+        return view('wlp.dashboard');
+    }
     public function create_wlp(){
         return view('admin.createwlp');
     }

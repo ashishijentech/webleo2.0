@@ -7,7 +7,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ElementController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\Wlpcontroller;
+use App\Http\Controllers\ManufacturerController;
 
+require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -41,12 +43,19 @@ Route::middleware(['auth','role:superadmin'])->group(function () {
 });
 
 
-//agent routes
+//admin routes
 Route::middleware(['auth','role:admin'])->group(function () {
-    Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('agent.dashboard');
+    Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
     Route::get( '/admin/onboard/wlp', [Wlpcontroller::class, 'create_wlp'])->name('admin.create.wlp');
     Route::post( '/admin/onboard/wlp', [Wlpcontroller::class, 'store'])->name('admin.store.wlp');
     Route::get( '/admin/wlp/list', [Wlpcontroller::class, 'index'])->name('admin.wlp');
 
 });
-require __DIR__.'/auth.php';
+
+//Wlp routes
+Route::middleware(['auth','role:wlp'])->group(function () {
+    Route::get('/wlp/dashboard',[Wlpcontroller::class,'dashboard'])->name('wlp.dashboard');
+    Route::get('/wlp/onboard/manufacturer',[ManufacturerController::class,'create'])->name('wlp.create.manufacturer');
+
+});
+

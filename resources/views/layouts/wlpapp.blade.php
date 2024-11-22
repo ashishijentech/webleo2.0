@@ -224,45 +224,19 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="mdi mdi-cube-outline menu-icon"></i>
-                                <span class="menu-title">WLP/Reseller Mgt.</span>
+                                <span class="menu-title">Manufacturer Mgt.</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="submenu">
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('admin.create.wlp')}}">Create WLP</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('admin.wlp')}}">WLP List</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('wlp.create.manufacturer')}}">Create Manufacturer</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="">Manufacturer List</a></li>
                                 </ul>
                             </div>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="mdi mdi-codepen menu-icon"></i>
-                                <span class="menu-title">Client Account Mgt.</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="submenu">
-                                <ul class="submenu-item">
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.create.admin') }}">Create Admin</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.admin') }}">Admin List</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login
-                                            2</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/register.html">Register</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/register-2.html">Register 2</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/lock-screen.html">Lockscreen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="docs/documentation.html" class="nav-link">
-                                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                                <span class="menu-title">Order Mgt.</span></a>
-                        </li>
+                       
+                        
                     </ul>
                 </div>
             </nav>
