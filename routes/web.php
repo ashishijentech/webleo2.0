@@ -6,6 +6,7 @@ use App\Http\Controllers\SuperController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ElementController;
 use App\Http\Controllers\ComponentController;
+use App\Http\Controllers\Wlpcontroller;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -43,7 +44,9 @@ Route::middleware(['auth','role:superadmin'])->group(function () {
 //agent routes
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('agent.dashboard');
-    Route::get( '/admin/onboard/wlp', [AdminController::class, 'create_wlp'])->name('admin.create.wlp');
+    Route::get( '/admin/onboard/wlp', [Wlpcontroller::class, 'create_wlp'])->name('admin.create.wlp');
+    Route::post( '/admin/onboard/wlp', [Wlpcontroller::class, 'store'])->name('admin.store.wlp');
+    Route::get( '/admin/wlp/list', [Wlpcontroller::class, 'index'])->name('admin.wlp');
 
 });
 require __DIR__.'/auth.php';

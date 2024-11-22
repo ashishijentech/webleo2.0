@@ -224,12 +224,8 @@
                             </a>
                             <div class="submenu">
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.element.create') }}">Create Elements &
-                                            Component</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/ui-features/typography.html">Component List</a></li>
                                     <li class="nav-item"><a class="nav-link" href="{{route('admin.create.wlp')}}">Create WLP</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('admin.wlp')}}">WLP List</a></li>
                                 </ul>
                             </div>
                         </li>

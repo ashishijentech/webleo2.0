@@ -62,8 +62,4 @@ class AdminController extends Controller
     }
 
 
-    public function create_wlp(){
-      return view('admin.createwlp');
-  }
-
 }
