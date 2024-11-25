@@ -20,7 +20,7 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-        .horizontal-menu .bottom-navbar .page-navigation > .nav-item.active > .nav-link:after {
+        .horizontal-menu .bottom-navbar .page-navigation>.nav-item.active>.nav-link:after {
             border-bottom: none;
         }
     </style>
@@ -229,8 +229,10 @@
                             </a>
                             <div class="submenu">
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('admin.create.wlp')}}">Create WLP</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('admin.wlp')}}">WLP List</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('admin.create.wlp') }}">Create WLP</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.wlp') }}">WLP
+                                            List</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -308,6 +310,44 @@
                 $(this).remove();
             });
         }, 4000); // 4 seconds
+    </script>
+    <script>
+        $('.country').on('change', function() {
+            $('.state').empty();
+            let value = this.value;
+            let china = ['Beijing'];
+            let india = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat',
+                'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Maharashtra',
+                'Madhya Pradesh', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab',
+                'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Tripura', 'Telangana', 'Uttar Pradesh', 'Uttarakhand',
+                'West Bengal', 'Andaman & Nicobar (UT)', 'Chandigarh (UT)',
+                'Dadra & Nagar Haveli and Daman & Diu (UT)', 'Delhi [National Capital Territory (NCT)]',
+                'Jammu & Kashmir (UT)', 'Ladakh (UT)', 'Lakshadweep (UT)', 'Puducherry (UT)'
+            ];
+
+            switch (value) {
+                case "china":
+                    for (let state of china) {
+                        $('.state').append($('<option>', {
+                            value: state,
+                            text: state
+                        }));
+                    }
+                    break;
+                case "india":
+                    for (let state of india) {
+                        $('.state').append($('<option>', {
+                            value: state,
+                            text: state
+                        }));
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+
+        });
     </script>
 </body>
 

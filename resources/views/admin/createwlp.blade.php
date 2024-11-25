@@ -268,43 +268,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $('.country').on('change', function() {
-            $('.state').empty();
-            let value = this.value;
-            let china = ['Beijing'];
-            let india = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat',
-                'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Maharashtra',
-                'Madhya Pradesh', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab',
-                'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Tripura', 'Telangana', 'Uttar Pradesh', 'Uttarakhand',
-                'West Bengal', 'Andaman & Nicobar (UT)', 'Chandigarh (UT)',
-                'Dadra & Nagar Haveli and Daman & Diu (UT)', 'Delhi [National Capital Territory (NCT)]',
-                'Jammu & Kashmir (UT)', 'Ladakh (UT)', 'Lakshadweep (UT)', 'Puducherry (UT)'
-            ];
-
-            switch (value) {
-                case "china":
-                    for (let state of china) {
-                        $('.state').append($('<option>', {
-                            value: state,
-                            text: state
-                        }));
-                    }
-                    break;
-                case "india":
-                    for (let state of india) {
-                        $('.state').append($('<option>', {
-                            value: state,
-                            text: state
-                        }));
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-
-        });
-    </script>
 @endsection

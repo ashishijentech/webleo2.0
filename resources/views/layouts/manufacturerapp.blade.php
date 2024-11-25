@@ -14,14 +14,26 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('multiselect/css/chosen.css') }}">        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url('multiselect/css/bootstrap.min.css') }}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ url('multiselect/css/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ url('images/favicon.png') }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
-        .horizontal-menu .bottom-navbar .page-navigation > .nav-item.active > .nav-link:after {
+        .horizontal-menu .bottom-navbar .page-navigation>.nav-item.active>.nav-link:after {
             border-bottom: none;
+        }
+        .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
+            height: 10px!important;
+        }
+        .chosen-container-multi .chosen-choices {
+             padding: 2px;
         }
     </style>
 </head>
@@ -163,18 +175,18 @@
                             <li class="nav-item dropdown d-lg-flex d-none">
                                 <a class="dropdown-toggle show-dropdown-arrow btn btn-inverse-primary btn-sm"
                                     id="nreportDropdown" href="#" data-bs-toggle="dropdown">
-                                    Reports
+                                   <i class="mdi mdi-wallet"></i> Wallet
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                                     aria-labelledby="nreportDropdown">
-                                    <p class="mb-0 font-weight-medium float-left dropdown-header">Reports</p>
+                                    <p class="mb-0 font-weight-medium float-left dropdown-header">Wallet</p>
                                     <a class="dropdown-item">
                                         <i class="mdi mdi-file-pdf text-primary"></i>
-                                        Pdf
+                                        Wallet Dashboard
                                     </a>
                                     <a class="dropdown-item">
                                         <i class="mdi mdi-file-excel text-primary"></i>
-                                        Exel
+                                        Tranxation List
                                     </a>
                                 </div>
                             </li>
@@ -216,7 +228,7 @@
                 <div class="container">
                     <ul class="nav page-navigation">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                            <a class="nav-link" href="{{ route('manufacturer.dashboard') }}">
                                 <i class="mdi mdi-file-document-box menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </a>
@@ -224,19 +236,50 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="mdi mdi-cube-outline menu-icon"></i>
-                                <span class="menu-title">Manufacturer Mgt.</span>
+                                <span class="menu-title">Barcode</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="submenu">
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('wlp.create.manufacturer')}}">Create Manufacturer</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('wlp.manufacturer.list')}}">Manufacturer List</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.create.manufacturer') }}">Create Manufacturer</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.manufacturer.list') }}">Manufacturer List</a></li>
                                 </ul>
                             </div>
                         </li>
 
-                       
-                        
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="mdi mdi-cube-outline menu-icon"></i>
+                                <span class="menu-title">Members</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="submenu">
+                                <ul>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.create.manufacturer') }}">Manage Distributors</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('manufacturer.create.distributors') }}">Create Distributors</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="mdi mdi-cube-outline menu-icon"></i>
+                                <span class="menu-title">Manage Device</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="submenu">
+                                <ul>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.create.manufacturer') }}">Create Manufacturer</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.manufacturer.list') }}">Manufacturer List</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -310,6 +353,12 @@
 
         });
     </script>
+    <script src="{{url('/multiselect/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{url('/multiselect/js/popper.min.js')}}"></script>
+    <script src="{{url('/multiselect/js/bootstrap.min.js')}}"></script>
+    <script src="{{url('/multiselect/js/chosen.jquery.min.js')}}"></script>
+        
+    <script src="{{url('/multiselect/js/main.js')}}"></script>
 </body>
 
 </html>

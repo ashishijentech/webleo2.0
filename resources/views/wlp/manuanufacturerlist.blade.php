@@ -1,4 +1,4 @@
-@extends('layouts.adminapp')
+@extends('layouts.wlpapp')
 
 @section('content')
     <div class="container-fluid page-body-wrapper">
@@ -15,7 +15,7 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Onboard WLP</h4>
+                                    <h4 class="card-title">Manufacturer List</h4>
                                     <table class="table table-bordered">
                                         <thead class="text-white" style="background-color: #464DEE">
                                             <tr>
@@ -27,11 +27,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($wlp as $item)
+                                            @foreach ($list as $item)
                                                 <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
-                                                    <td>{{ $item->usr->name }}</td>
-                                                    <td>{{ $item->usr->email }}</td>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->usrdetails->name }}</td>
+                                                    <td>{{ $item->usrdetails->email }}</td>
                                                     <td>{{ $item->mobile_no }}</td>
                                                     <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
                                                                 style=" font-size: 20px"></i></a> <a href=""
@@ -43,6 +43,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>

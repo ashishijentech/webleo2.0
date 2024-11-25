@@ -3,14 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\ManufacturerService;
 
 class ManufacturerController extends Controller
-{
-    public function index(){
+{   
+    protected $manufacturerservice;
 
+
+    public function __construct(ManufacturerService $manufacturerservice){
+        $this->manufacturerservice = $manufacturerservice;
+
+    }
+
+    public function index(){
+        $list = $this->manufacturerservice->view();
+        return view('wlp.manuanufacturerlist')->with(compact('list'));
     }
 
     public function create(){
        return view('wlp.createmanufacturer');
+    }
+
+    public function store(Request $request){
+        $this->manufacturerservice->createManufacturer($request) ;
+        return redirect()->back()->with('success','Manufacturer Added!');
+    }
+
+    public function dashboard(){
+        return view('manufacturer.dashboard');
     }
 }

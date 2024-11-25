@@ -16,28 +16,31 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Onboard Manufacturer</h4>
-                                    <form action="" method="post"
-                                        id="Manufactore_add">
+                                    <form action="{{route('wlp.store.manufacturer')}}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="mb-3">
+                                        <div class="mb-2">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label for="">Manufacturer Name <span
-                                                            class="text-danger badge">*</span></label>
-                                                    <input type="text" class="form-control form-control-sm"
-                                                        name="manufacturer_name">
-                                                    @error('manufacturer_name')
+                                                    <label for="">Select Country <span
+                                                            class="badge text-danger">*</span></label>
+                                                    <select name="country" class="form-control country">
+                                                        <option disabled @selected(true)>Choose Country
+                                                        </option>
+                                                        <option value="china" @selected(old('country') == 'china')>China</option>
+                                                        <option value="india" @selected(old('country') == 'india')>India</option>
+                                                    </select>
+                                                    @error('country')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
+
                                                 <div class="col-md-4">
-                                                    <label for="">WLP Parent Name <span
-                                                            class="text-danger badge">*</span></label>
-                                                    <select name="wlp_parent_name" class="form-select form-select-md">
-                                                        <option selected disabled>Choose Parent Name</option>
-                                                        
+                                                    <label for="">Select State <span
+                                                            class="badge text-danger">*</span></label>
+                                                    <select name="state" id="" class="form-control state">
+                                                        <option disabled @selected(true)>Choose State</option>
                                                     </select>
-                                                    @error('wlp_parent_name')
+                                                    @error('state')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -52,17 +55,12 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="mb-3">
+                                        <div class="mb-2">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label for="">Mobile No. <span
-                                                            class="text-danger badge">*</span></label>
+                                                    <label for="">Business Name</label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="mobile_no">
-                                                    @error('mobile_no')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
+                                                        name="business_name">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="">GST Number <span
@@ -74,19 +72,37 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label for="">Address <span
+                                                    <label for="">Parent Name (WLP)<span
                                                             class="text-danger badge">*</span></label>
-                                                    <input type="text" class="form-control form-control-sm"
-                                                        name="address">
-                                                    @error('address')
+                                                    <input type="hidden" class="form-control form-control-sm"
+                                                        name="parent_name" value="{{ auth()->user()->id }}">
+                                                    <input type="text" value="{{auth()->user()->name}}" class="form-control form-control-sm" readonly>
+                                                    @error('parent_name')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="mb-3">
+                                        <div class="mb-2">
                                             <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="">Manufacturer Name <span
+                                                            class="text-danger badge">*</span></label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="manufacturer_name">
+                                                    @error('manufacturer_name')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="">Mobile No. <span
+                                                            class="text-danger badge">*</span></label>
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="mobile_no">
+                                                    @error('mobile_no')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                                 <div class="col-md-4">
                                                     <label for="">Email Id <span
                                                             class="text-danger badge">*</span></label>
@@ -98,6 +114,32 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="mb-2">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="">Address <span
+                                                            class="text-danger badge">*</span></label>
+                                                    <textarea name="address" id="" cols="30" rows="10" class="form-control form-control-sm">
+
+                                                    </textarea>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for="">Upload Logo</label>
+                                                            <input type="file" name="logo"
+                                                                class="form-control form-control-sm" id="imageInput">
+                                                        </div>
+                                                        <div class="col-md-6 p-2 text-center" style="border: 1px dashed;">
+                                                            <img src="{{url('images\2265750.webp')}}" alt="" class="img-fluid" id="imagePreview"
+                                                                >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <button class="btn btn-primary">Onboard</button>
                                     </form>
                                 </div>
@@ -108,4 +150,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $('#imageInput').change(function() {
+            var file = $(this)[0].files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
 @endsection
