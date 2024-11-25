@@ -258,10 +258,21 @@
                                 </ul>
                             </div>
                         </li>
+
+
                         <li class="nav-item">
                             <a href="docs/documentation.html" class="nav-link">
                                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                                 <span class="menu-title">Order Mgt.</span></a>
+
+                            <div class="submenu">
+                                <ul class="submenu-item">
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{route('admin.create.subscription')}}">Create Subscription</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{route('admin.view.subscriptionlist')}}">Subscription List</a></li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ElementController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\Wlpcontroller;
 use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\SubscriptionController;
 
 require __DIR__.'/auth.php';
 Route::get('/', function () {
@@ -49,6 +50,14 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get( '/admin/onboard/wlp', [Wlpcontroller::class, 'create_wlp'])->name('admin.create.wlp');
     Route::post( '/admin/onboard/wlp', [Wlpcontroller::class, 'store'])->name('admin.store.wlp');
     Route::get( '/admin/wlp/list', [Wlpcontroller::class, 'index'])->name('admin.wlp');
+
+    Route::get('admin/create-subscription',[SubscriptionController::class,'create'])->name('admin.create.subscription');
+    Route::post('admin/store-subscription',[SubscriptionController::class,'store'])->name('admin.store.subscription');
+    Route::get('admin/subscriptionlist',[SubscriptionController::class,'index'])->name('admin.view.subscriptionlist');
+    Route::delete('admin/deletesubscription/{id}',[SubscriptionController::class,'destroy'])->name('admin.delete.subscription');
+
+    Route::get('admin/editsubscription/{id}',[SubscriptionController::class,'show'])->name('admin.edit.subscription');
+    Route::put('admin/update-subscription/{id}',[SubscriptionController::class,'update'])->name('admin.update.subscription');
 
 });
 
