@@ -42,13 +42,13 @@
                                                        <td>{{$subscribtion->isRenewal}}</td>
                                                        <td>
                                                             
-                                                            <a href="{{route('admin.edit.subscription', $subscribtion->id)}}"  class="btn btn-primary btn-sm"  onclick="return confirm('Are you sure?')">Edit</a>
-                                                           
-                                                            <form action="{{ route('admin.delete.subscription', $subscribtion->id) }}" method="POST">
-                                                                 @csrf
-                                                                 @method('DELETE')
-                                                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                                            </form>
+                                                       <a href="{{ route('admin.delete.subscription', $subscribtion->id) }}" onclick="return confirm('Are you sure?')" class="btn text-danger"><i class="mdi mdi-delete"
+                                                                      style=" font-size: 20px"></i></a>
+
+                                                            <a href="{{route('admin.edit.subscription', $subscribtion->id)}}"
+                                                                 class="btn text-info"><i class="mdi mdi-table-edit"
+                                                                      style=" font-size: 20px"></i></a>
+                                                            <a href="" class="btn"><i class="mdi mdi-eye" style=" font-size: 20px"></i></a>
 
                                                        </td>
                                                   </tr>
