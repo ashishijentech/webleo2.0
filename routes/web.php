@@ -56,7 +56,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('admin/create-subscription',[SubscriptionController::class,'create'])->name('admin.create.subscription');
     Route::post('admin/store-subscription',[SubscriptionController::class,'store'])->name('admin.store.subscription');
     Route::get('admin/subscriptionlist',[SubscriptionController::class,'index'])->name('admin.view.subscriptionlist');
-    Route::delete('admin/deletesubscription/{id}',[SubscriptionController::class,'destroy'])->name('admin.delete.subscription');
+    Route::get('admin/deletesubscription/{id}',[SubscriptionController::class,'destroy'])->name('admin.delete.subscription');
 
     Route::get('admin/editsubscription/{id}',[SubscriptionController::class,'show'])->name('admin.edit.subscription');
     Route::put('admin/update-subscription/{id}',[SubscriptionController::class,'update'])->name('admin.update.subscription');
@@ -75,6 +75,9 @@ Route::middleware(['auth','role:wlp'])->group(function () {
 Route::middleware(['auth','role:manufacturer'])->group(function () {
     Route::get('/manufacturer/dashboard',[ManufacturerController::class,'dashboard'])->name('manufacturer.dashboard');
     Route::get('/manufacturer/create/distributors',[DistributorsController::class,'create'])->name('manufacturer.create.distributors');
+    Route::get('/manufacturer/manage/barcode',[ManufacturerController::class,'manageBarcode'])->name('manufacturer.manage.barcode');
+    Route::get('/manufacturer/fetch/components/{id}',[ManufacturerController::class,'fetchComponents'])->name('manufacturer.fetch.components');
+
 
 });
 
