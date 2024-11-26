@@ -242,9 +242,15 @@
                             <div class="submenu">
                                 <ul>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('wlp.create.manufacturer') }}">Create Manufacturer</a></li>
+                                            href="{{ route('manufacturer.manage.barcode') }}">Manage Barcode</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('wlp.manufacturer.list') }}">Manufacturer List</a></li>
+                                            href="{{ route('wlp.manufacturer.list') }}">Allocate Barcode</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.manufacturer.list') }}">Rollback Barcode</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.manufacturer.list') }}">Renewal Allocation</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('wlp.manufacturer.list') }}">Manage Accessories</a></li>
                                 </ul>
                             </div>
                         </li>

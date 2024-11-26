@@ -8,11 +8,8 @@ use App\Http\Controllers\ElementController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\Wlpcontroller;
 use App\Http\Controllers\ManufacturerController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\SubscriptionController;
-=======
 use App\Http\Controllers\DistributorsController;
->>>>>>> Stashed changes
 
 require __DIR__.'/auth.php';
 Route::get('/', function () {
@@ -77,6 +74,9 @@ Route::middleware(['auth','role:wlp'])->group(function () {
 Route::middleware(['auth','role:manufacturer'])->group(function () {
     Route::get('/manufacturer/dashboard',[ManufacturerController::class,'dashboard'])->name('manufacturer.dashboard');
     Route::get('/manufacturer/create/distributors',[DistributorsController::class,'create'])->name('manufacturer.create.distributors');
+    Route::get('/manufacturer/manage/barcode',[ManufacturerController::class,'manageBarcode'])->name('manufacturer.manage.barcode');
+    Route::get('/manufacturer/fetch/components/{id}',[ManufacturerController::class,'fetchComponents'])->name('manufacturer.fetch.components');
+
 
 });
 
