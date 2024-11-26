@@ -8,11 +8,9 @@ use App\Http\Controllers\ElementController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\Wlpcontroller;
 use App\Http\Controllers\ManufacturerController;
-<<<<<<< Updated upstream
-use App\Http\Controllers\SubscriptionController;
-=======
+use App\Http\Controllers\SubscriptionController;    
 use App\Http\Controllers\DistributorsController;
->>>>>>> Stashed changes
+
 
 require __DIR__.'/auth.php';
 Route::get('/', function () {

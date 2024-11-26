@@ -31,9 +31,12 @@
         }
         .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
             height: 10px!important;
+           
         }
         .chosen-container-multi .chosen-choices {
              padding: 2px;
+             border: 1px solid gray!important;
+             
         }
     </style>
 </head>

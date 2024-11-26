@@ -149,7 +149,7 @@
                                                         <label>Languages Known<span
                                                                 class="text-danger">*</span></label><br>
                                                         <select data-placeholder="Select Categories" multiple
-                                                            class="chosen-select form-select form-select-sm"
+                                                            class=" form-control chosen-select "
                                                             tabindex="8">
                                                             <option>Design</option>
                                                             <option>HTML5</option>
