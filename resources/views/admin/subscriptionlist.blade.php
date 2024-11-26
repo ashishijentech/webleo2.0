@@ -12,21 +12,22 @@
                     </div>
                     @endif
                     <div class="row">
-                         <div class="col-md-12 grid-margin stretch-card mx-auto">
+                         <div class="col-md-12 grid-margin stretch-card">
                               <div class="card">
                                    <div class="card-body">
-                                        <table class="table table-hover table-sm">
-                                             <thead>
+                                        <h4 class="card-title">Onboard WLP</h4>
+                                        <table class="table table-bordered">
+                                             <thead class="text-white" style="background-color: #464DEE">
                                                   <tr>
-                                                       <th scope="col" style="width: 5%;">#</th>
-                                                       <th scope="col" style="width: 5%;">Parent name</th>
-                                                       <th scope="col" style="width: 5%;">Package Type</th>
-                                                       <th scope="col" style="width: 5%;">Package Name</th>
-                                                       <th scope="col" style="width: 5%;">Billing Cycle</th>
-                                                       <th scope="col" style="width: 5%;">Description</th>
-                                                       <th scope="col" style="width: 5%;">Price</th>
-                                                       <th scope="col" style="width: 5%;">isRenewal</th>
-                                                       <th scope="col" style="width: 5%;">Action</th>
+                                                       <th scope="col">#</th>
+                                                       <th scope="col">Parent name</th>
+                                                       <th scope="col">Package Type</th>
+                                                       <th scope="col">Package Name</th>
+                                                       <th scope="col">Billing Cycle</th>
+                                                       <th scope="col">Description</th>
+                                                       <th scope="col">Price</th>
+                                                       <th scope="col">isRenewal</th>
+                                                       <th scope="col">Action</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -41,15 +42,13 @@
                                                        <td>{{$subscribtion->price}}</td>
                                                        <td>{{$subscribtion->isRenewal}}</td>
                                                        <td>
-                                                            
-                                                       <a href="{{ route('admin.delete.subscription', $subscribtion->id) }}" onclick="return confirm('Are you sure?')" class="btn text-danger"><i class="mdi mdi-delete"
+                                                            <a href="{{ route('admin.delete.subscription', $subscribtion->id) }}" onclick="return confirm('Are you sure?')" class="btn text-danger"><i class="mdi mdi-delete"
                                                                       style=" font-size: 20px"></i></a>
 
                                                             <a href="{{route('admin.edit.subscription', $subscribtion->id)}}"
                                                                  class="btn text-info"><i class="mdi mdi-table-edit"
                                                                       style=" font-size: 20px"></i></a>
                                                             <a href="" class="btn"><i class="mdi mdi-eye" style=" font-size: 20px"></i></a>
-
                                                        </td>
                                                   </tr>
                                                   @endforeach
