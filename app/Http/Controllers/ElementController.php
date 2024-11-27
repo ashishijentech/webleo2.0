@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Element;
+use App\Services\ElementService;
+
 class ElementController extends Controller
 {
+    public function __construct(private ElementService $elementService)
+    {
+        
+    }
+
     public function index(){
-        $element = Element::all();
-        return view('superadmin.createelement')->with(compact('element'));
+        $this->elementService->index();
     }
 
     public function store(Request $request){
-     $element = new Element;
-     $element->name = $request['element_name'];
-     $element->save();
-     return redirect()->back()->with('success','Element created!');
+        $this->elementService->store($request);
     }
 }
