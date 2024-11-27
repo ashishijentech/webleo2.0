@@ -37,6 +37,8 @@ class AuthenticatedSessionController extends Controller
             $url = "wlp/dashboard";
         }elseif($request->user()->role === "manufacturer"){
             $url = "manufacturer/dashboard";
+        }elseif($request->user()->role === "distributer"){
+            $url = "distributer/dashboard";
         }else{
             $url = "dashboard";  
         }

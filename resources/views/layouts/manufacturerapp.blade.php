@@ -34,7 +34,7 @@
            
         }
         .chosen-container-multi .chosen-choices {
-             padding: 2px;
+            text-align: center;
              border: 1px solid gray!important;
              
         }
@@ -267,9 +267,9 @@
                             <div class="submenu">
                                 <ul>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('wlp.create.manufacturer') }}">Manage Distributors</a></li>
-                                    <li class="nav-item"><a class="nav-link"
                                             href="{{ route('manufacturer.create.distributors') }}">Create Distributors</a></li>
+                                    {{-- <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('manufacturer.create.distributors') }}">Create Distributors</a></li> --}}
                                 </ul>
                             </div>
                         </li>

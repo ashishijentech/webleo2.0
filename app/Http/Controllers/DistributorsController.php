@@ -19,4 +19,13 @@ class DistributorsController extends Controller
     public function create(){
         return $this->distributorservice->create();
     }
+
+    public function store(Request $request){
+        $this->distributorservice->store($request);
+        return redirect()->back()->with('success','Distributer Added!');
+    }
+
+    public function dashboard(){
+        return view('distributor.dashboard');
+    }
 }

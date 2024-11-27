@@ -73,6 +73,12 @@ Route::middleware(['auth', 'role:wlp'])->group(function () {
 Route::middleware(['auth', 'role:manufacturer'])->group(function () {
     Route::get('/manufacturer/dashboard', [ManufacturerController::class, 'dashboard'])->name('manufacturer.dashboard');
     Route::get('/manufacturer/create/distributors', [DistributorsController::class, 'create'])->name('manufacturer.create.distributors');
+    Route::post('/manufacturer/create/distributors', [DistributorsController::class, 'store'])->name('manufacturer.store.distributors');
     Route::get('/manufacturer/manage/barcode', [ManufacturerController::class, 'manageBarcode'])->name('manufacturer.manage.barcode');
     Route::get('/manufacturer/fetch/components/{id}', [ManufacturerController::class, 'fetchComponents'])->name('manufacturer.fetch.components');
+});
+
+Route::middleware(['auth', 'role:distributer'])->group(function () {
+    Route::get('/distributer/dashboard', [DistributorsController::class, 'dashboard'])->name('distributer.dashboard');
+
 });

@@ -16,7 +16,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Onboard Disributor</h4>
-                                    <form action="" method="post" id="edit_Distributer">
+                                    <form action="{{route('manufacturer.store.distributors')}}" method="post" id="edit_Distributer">
                                         @csrf
                                         <div class="card">
                                             <div class="my-3 mx-3">
@@ -27,17 +27,10 @@
                                                         <input type="text" class="form-control form-control-sm"
                                                             name="business_name" value="">
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <label for="">First Name<span
-                                                                class="text-danger">*</span></label>
+                                                    <div class="col-md-6">
+                                                        <label for="">Name<span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control form-control-sm"
-                                                            name="first_name" value="">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label for="">Last Name<span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            name="last_name" value="">
+                                                            name="name" value="">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="">Email<span
@@ -54,7 +47,7 @@
                                                         <label for="">Gender<span
                                                                 class="text-danger">*</span></label>
                                                         <select name="gender" id=""
-                                                            class="form-select form-select-sm state">
+                                                            class="form-select form-select-sm">
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
                                                         </select>
@@ -69,7 +62,7 @@
                                                         <label for="">Date Of Birth<span
                                                                 class="text-danger">*</span></label>
                                                         <input type="date" class="form-control form-control-sm"
-                                                            name="DOB">
+                                                            name="date_of_birth">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="">Age<span class="text-danger">*</span></label>
@@ -83,9 +76,9 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <label>Is Map Device Edit <span
-                                                            class="text-danger">*</span></label><br>
+                                                                class="text-danger">*</span></label><br>
                                                         <div class="form-check form-check-inline">
-                                                            
+
                                                             <input type="radio" id="yes" name="map_device_edit"
                                                                 value="yes" class="form-check-input">
                                                             <label for="yes">Yes</label>
@@ -107,7 +100,7 @@
                                                         <label for="">Occupation<span
                                                                 class="text-danger">*</span></label>
                                                         <select name="occupation" id=""
-                                                            class="form-select form-select-sm state">
+                                                            class="form-select form-select-sm">
                                                             <option value="" hidden>Select Occupation</option>
                                                             <option value="Business Man">Business Man</option>
                                                             <option value="Student">Student</option>
@@ -124,7 +117,7 @@
                                                                 Executives</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    {{-- <div class="col-md-3">
                                                         <label for="">Payment Type<span
                                                                 class="text-danger">*</span></label>
                                                         <select name="paymentType" id=""
@@ -134,31 +127,27 @@
                                                             <option value="After Delivered">After Delivered
                                                             </option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 mx-3">
-                                                <div class="row">
+                                                    </div> --}}
                                                     <div class="col-md-3">
                                                         <label for="">Advance Payment<span
                                                                 class="text-danger">*</span></label>
                                                         <input type="number" class="form-control form-control-sm"
-                                                            name="Advance_Payment" value="">
+                                                            name="advance_payment" value="">
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 mx-3">
+                                                <div class="row">
                                                     <div class="col-md-3">
                                                         <label>Languages Known<span
                                                                 class="text-danger">*</span></label><br>
                                                         <select data-placeholder="Select Categories" multiple
-                                                            class=" form-control chosen-select "
+                                                            class="form-control chosen-select " name="language_known"
                                                             tabindex="8">
-                                                            <option>Design</option>
-                                                            <option>HTML5</option>
-                                                            <option>CSS3</option>
-                                                            <option>jQuery</option>
-                                                            <option>BS4</option>
-                                                            <option>Bootstrap</option>
-                                                            <option>WordPress</option>
-                                                            <option>FrontEnd</option>
+                                                            <option></option>
+                                                            <option value="english">English</option>
+                                                            <option value="hindi">Hindi</option>
+                                                            <option value="odiya">Odiya</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -170,68 +159,39 @@
                                                     <div class="col-md-4">
                                                         <label for="">Country<span
                                                                 class="text-danger">*</span></label>
-                                                        <select name="country" class="form-select form-select-sm state">
-                                                            <option value="India">India</option>
+                                                        <select name="country"
+                                                            class="form-control form-control-sm country">
+                                                            <option disabled @selected(true)>Choose Country
+                                                            </option>
+                                                            <option value="china" @selected(old('country') == 'china')>China
+                                                            </option>
+                                                            <option value="india" @selected(old('country') == 'india')>India
+                                                            </option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="">State<span
                                                                 class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            name="state" value="">
+                                                        <select class="form-control form-control-sm state" name="state"
+                                                            id=""></select>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="">RTO Division<span
                                                                 class="text-danger">*</span></label>
-                                                        <select name="rtoDivision" id="rtoDivision"
-                                                            class="form-select form-select-sm state">
-                                                            <option value="" hidden>Select State</option>
-                                                            <option value="OD 29">OD 29</option>
-                                                            <option value="OD 21">OD 21</option>
-                                                        </select>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="rto_devision">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card my-3 py-3">
                                             <div class="mb-3 mx-3">
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <label for="">Address Type<span
-                                                                class="text-danger">*</span></label>
-                                                        <select name="AddressType" id=""
-                                                            class="form-select form-select-sm state">
-                                                            <option value="" hidden>Select Address Type
-                                                            </option>
-                                                            <option value="Permanent">Permanent</option>
-                                                            <option value="Temporary">Temporary</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-3">
-                                                        <label for="">Country<span
-                                                                class="text-danger">*</span></label>
-                                                        <select name="country2" id=""
-                                                            class="form-select form-select-sm state">
-                                                            <option value="india">India</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label for="">State<span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            name="state2" value="">
-                                                    </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <label for="">District<span
                                                                 class="text-danger">*</span></label>
                                                         <input type="text" class="form-control form-control-sm"
-                                                            name="District" value="">
+                                                            name="district" value="">
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 mx-3">
-                                                <div class="row">
+
                                                     <div class="col-md-4">
                                                         <label for="">Pin Code<span
                                                                 class="text-danger">*</span></label>
@@ -242,13 +202,14 @@
                                                         <label for="">Area<span
                                                                 class="text-danger">*</span></label>
                                                         <input type="text" class="form-control form-control-sm"
-                                                            name="Area" value="area">
+                                                            name="area" >
+
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <label for="">Address<span
                                                                 class="text-danger">*</span></label>
-                                                        <textarea type="text" class="form-control Alphanumeric AddressValidation" maxlength="500" name="address"
-                                                            style="width: 365px; height: 118px;" value=''> </textarea>
+                                                        <textarea type="text" class="form-control Alphanumeric AddressValidation" name="address" value=''> </textarea>
                                                     </div>
                                                 </div>
                                             </div>
