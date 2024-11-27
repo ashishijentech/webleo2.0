@@ -76,10 +76,7 @@ class SubscriptionService
      */
     public function edit(string $id)
     {
-        //
-
-        //return view('admin.editsubscription', compact('user'));
-
+        
     }
 
     /**
@@ -87,37 +84,13 @@ class SubscriptionService
      */
     public function update(Request $request, string $id)
     {
-        //
-
-        // $user = SubscriptiondetailS::find($id);
-
-        // if ($user) {
-        //     $user->update([
-        //         'parentId' => $request->input('Parentid'),
-        //         'packageType' => $request->input('PackageType'),
-        //         'packageName' => $request->input('PackageName'),
-        //         'billingCycle' => $request->input('BillingCycle'),
-        //         'description' => $request->input('Description'),
-        //         'price' => $request->input('Price'),
-
-                
-        //     ]);
-
-        //     return redirect()->route('users.index')->with('success', 'User updated successfully.');
-        // }
-
-        // return redirect()->route('users.index')->with('error', 'User not found.');
-
-
 
         $subscriptiondetails = Subscriptiondetails::find($id);
 
-        // Check if the record exists
         if (!$subscriptiondetails) {
             return redirect()->route('admin.view.subscriptionlist')->with('error', 'Subscription not found.');
         }
     
-        // Update fields with the new values
         $subscriptiondetails->parentId = $request->input('Parentid');
         $subscriptiondetails->packageType = $request->input('PackageType');
         $subscriptiondetails->packageName = $request->input('PackageName');
@@ -126,15 +99,11 @@ class SubscriptionService
         $subscriptiondetails->price = $request->input('Price');
         $subscriptiondetails->isRenewal = $request->has('Renewalcheckbox') ? 'Yes' : 'No';
     
-        // Save the changes to the database
         $subscriptiondetails->save();
     
         return redirect()->route('admin.view.subscriptionlist')->with('success', 'Subscription updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
