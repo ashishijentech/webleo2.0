@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DistributorsService;
 use Illuminate\Http\Request;
 
 class DistributorsController extends Controller
 {
-    public function index(){
+    public function __construct( private DistributorsService $distributorservice)
+    {
+        
+    }
 
+    public function index(){
+        return $this->distributorservice->index();
     }
 
     public function create(){
-        return view('manufacturer.createdistributor');
+        return $this->distributorservice->create();
     }
 }

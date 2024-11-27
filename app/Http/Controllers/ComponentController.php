@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Component;
+use App\Services\ComponentService;
+use Illuminate\Http\Request;
+
 class ComponentController extends Controller
 {
+    public function __construct(private ComponentService $componentService)
+    {
+        
+    }
+
     public function store(Request $request){
-        $component = new Component;
-        $component->element_id = $request['elements'];
-        $component->name = $request['component_name'];
-        $component->value = $request['component_value'];
-        $component->save();
-        return redirect()->back()->with('success','Component created!');
+        return $this->componentService->store($request);
     }
 
     public function list($element_id){
-        $component = Component::where('element_id',$element_id)->get();
-        #dd($component);
-        return view('superadmin.componetlist')->with(compact('component'));
+        return $this->componentService->list($element_id);
     }
+    
 }

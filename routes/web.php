@@ -10,17 +10,16 @@ use App\Http\Controllers\Wlpcontroller;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\SubscriptionController;    
 use App\Http\Controllers\DistributorsController;
-
-
 require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::middleware(['auth','role:user'])->group(function () {
+Route::middleware(['auth', 'role:user'])->group(function () {
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
 });
 
 Route::middleware('auth')->group(function () {
@@ -30,13 +29,13 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware(['auth','role:superadmin'])->group(function () {
-    
-    Route::get('/superadmin/dashboard',[SuperController::class,'dashboard'])->name('superadmin.dashboard');
+Route::middleware(['auth', 'role:superadmin'])->group(function () {
+
+    Route::get('/superadmin/dashboard', [SuperController::class, 'dashboard'])->name('superadmin.dashboard');
     Route::get('/superadmin/admins-list', [AdminController::class, 'index'])->name('superadmin.admin');
-    Route::get( '/superadmin/onboard/admin', [AdminController::class, 'create'])->name('superadmin.create.admin');
+    Route::get('/superadmin/onboard/admin', [AdminController::class, 'create'])->name('superadmin.create.admin');
     Route::post('/superadmin/onboard/admin', [AdminController::class, 'store'])->name('superadmin.store.admin');
-    
+
 
     Route::get('/superadmin/create-element', [ElementController::class, 'index'])->name('superadmin.element.create');
     Route::post('/superadmin/create-element', [ElementController::class, 'store'])->name('superadmin.element.store');
@@ -47,37 +46,33 @@ Route::middleware(['auth','role:superadmin'])->group(function () {
 
 
 //admin routes
-Route::middleware(['auth','role:admin'])->group(function () {
-    Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-    Route::get( '/admin/onboard/wlp', [Wlpcontroller::class, 'create_wlp'])->name('admin.create.wlp');
-    Route::post( '/admin/onboard/wlp', [Wlpcontroller::class, 'store'])->name('admin.store.wlp');
-    Route::get( '/admin/wlp/list', [Wlpcontroller::class, 'index'])->name('admin.wlp');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/onboard/wlp', [Wlpcontroller::class, 'create_wlp'])->name('admin.create.wlp');
+    Route::post('/admin/onboard/wlp', [Wlpcontroller::class, 'store'])->name('admin.store.wlp');
+    Route::get('/admin/wlp/list', [Wlpcontroller::class, 'index'])->name('admin.wlp');
 
-    Route::get('admin/create-subscription',[SubscriptionController::class,'create'])->name('admin.create.subscription');
-    Route::post('admin/store-subscription',[SubscriptionController::class,'store'])->name('admin.store.subscription');
-    Route::get('admin/subscriptionlist',[SubscriptionController::class,'index'])->name('admin.view.subscriptionlist');
-    Route::get('admin/deletesubscription/{id}',[SubscriptionController::class,'destroy'])->name('admin.delete.subscription');
+    Route::get('admin/create-subscription', [SubscriptionController::class, 'create'])->name('admin.create.subscription');
+    Route::post('admin/store-subscription', [SubscriptionController::class, 'store'])->name('admin.store.subscription');
+    Route::get('admin/subscriptionlist', [SubscriptionController::class, 'index'])->name('admin.view.subscriptionlist');
+    Route::get('admin/deletesubscription/{id}', [SubscriptionController::class, 'destroy'])->name('admin.delete.subscription');
 
-    Route::get('admin/editsubscription/{id}',[SubscriptionController::class,'show'])->name('admin.edit.subscription');
-    Route::put('admin/update-subscription/{id}',[SubscriptionController::class,'update'])->name('admin.update.subscription');
-
+    Route::get('admin/editsubscription/{id}', [SubscriptionController::class, 'show'])->name('admin.edit.subscription');
+    Route::put('admin/update-subscription/{id}', [SubscriptionController::class, 'update'])->name('admin.update.subscription');
 });
 
 //Wlp routes
-Route::middleware(['auth','role:wlp'])->group(function () {
-    Route::get('/wlp/dashboard',[Wlpcontroller::class,'dashboard'])->name('wlp.dashboard');
-    Route::get('/wlp/onboard/manufacturer',[ManufacturerController::class,'create'])->name('wlp.create.manufacturer');
-    Route::post('/wlp/onboard/manufacturer',[ManufacturerController::class,'store'])->name('wlp.store.manufacturer');
-    Route::get('/wlp/manufacturer/list',[ManufacturerController::class,'index'])->name('wlp.manufacturer.list');
+Route::middleware(['auth', 'role:wlp'])->group(function () {
+    Route::get('/wlp/dashboard', [Wlpcontroller::class, 'dashboard'])->name('wlp.dashboard');
+    Route::get('/wlp/onboard/manufacturer', [ManufacturerController::class, 'create'])->name('wlp.create.manufacturer');
+    Route::post('/wlp/onboard/manufacturer', [ManufacturerController::class, 'store'])->name('wlp.store.manufacturer');
+    Route::get('/wlp/manufacturer/list', [ManufacturerController::class, 'index'])->name('wlp.manufacturer.list');
 });
 
 //Manufacturer routes
-Route::middleware(['auth','role:manufacturer'])->group(function () {
-    Route::get('/manufacturer/dashboard',[ManufacturerController::class,'dashboard'])->name('manufacturer.dashboard');
-    Route::get('/manufacturer/create/distributors',[DistributorsController::class,'create'])->name('manufacturer.create.distributors');
-    Route::get('/manufacturer/manage/barcode',[ManufacturerController::class,'manageBarcode'])->name('manufacturer.manage.barcode');
-    Route::get('/manufacturer/fetch/components/{id}',[ManufacturerController::class,'fetchComponents'])->name('manufacturer.fetch.components');
-
-
+Route::middleware(['auth', 'role:manufacturer'])->group(function () {
+    Route::get('/manufacturer/dashboard', [ManufacturerController::class, 'dashboard'])->name('manufacturer.dashboard');
+    Route::get('/manufacturer/create/distributors', [DistributorsController::class, 'create'])->name('manufacturer.create.distributors');
+    Route::get('/manufacturer/manage/barcode', [ManufacturerController::class, 'manageBarcode'])->name('manufacturer.manage.barcode');
+    Route::get('/manufacturer/fetch/components/{id}', [ManufacturerController::class, 'fetchComponents'])->name('manufacturer.fetch.components');
 });
-
