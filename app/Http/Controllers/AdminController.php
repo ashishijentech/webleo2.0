@@ -20,11 +20,11 @@ class AdminController extends Controller
   {
     return $this->adminService->index();
   }
-
   public function dashboard()
   {
     return $this->adminService->dashboard();
   }
+  
 
   public function create()
   {
@@ -33,7 +33,9 @@ class AdminController extends Controller
 
   public function store(AdminOnboardRequest $request)
   {
-    return $this->adminService->store($request);
+
+   $this->adminService->store($request);
+    return redirect()->back()->with('success', 'Onbording Completed!');
   }
   
 }

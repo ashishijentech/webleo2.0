@@ -71,6 +71,6 @@ class AdminService
     $request['company_logo']->storeAs('uploads', $logo);
     $detais->logo = $logo;
     $detais->save();
-    return redirect()->back()->with('success', 'Onbording Completed!');
+    
   }
 }

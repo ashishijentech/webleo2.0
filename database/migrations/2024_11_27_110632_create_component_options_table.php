@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('components', function (Blueprint $table) {
+        Schema::create('component_options', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('element_id');
-            $table->foreign('element_id')->references('id')->on('elements')->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->string('name');
-            $table->string("type");
-            $table->string('value')->nullable();
+            $table->foreignId('name_id')->constrained("components")->onDelete('cascade');
+            $table->string('option_value');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('components');
+        Schema::dropIfExists('component_options');
     }
 };
