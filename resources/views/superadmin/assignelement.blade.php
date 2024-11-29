@@ -15,25 +15,25 @@
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Assign Element</h4>
-                                <form action="{{route('superadmin.store.admin')}}" method="post" enctype="multipart/form-data">
+                                <h4 class="card-title">Assign Element To Admin</h4>
+                                <form action="{{route('superadmin.assign.element.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <div class="row">
-                                            <div class="mb-2">
+                                            <div class="col-md-6 mb-2">
                                                 <label for="">Select Elements:</label>
-                                                <select name="elements" class="form-control orm-control-sm">
+                                                <select name="element" class="form-control orm-control-sm">
                                                     <option selected @disabled(true)>Please select element</option>
                                                     @foreach ($element as $item)
                                                     <option value="{{ $item->id }}"> {{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="col-md-6 mb-2">
                                                 <label for="">Select Admin:</label>
-                                                <select name="elements" class="form-control orm-control-sm">
+                                                <select name="admin" class="form-control orm-control-sm">
                                                     <option selected @disabled(true)>Please select admin</option>
-                                                    @foreach ($element as $item)
+                                                    @foreach ($admin as $item)
                                                     <option value="{{ $item->id }}"> {{ $item->name }}</option>
                                                     @endforeach
                                                 </select>

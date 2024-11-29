@@ -3,9 +3,11 @@
 namespace App\Services;
 use App\Models\User;
 use App\Models\Admindetails;
+use Illuminate\Http\Request;
 
 
 use App\Http\Requests\AdminOnboardRequest;
+use App\Models\AssignElement;
 
 class AdminService
 {
@@ -72,6 +74,15 @@ class AdminService
     $detais->logo = $logo;
     $detais->save();
     return redirect()->back()->with('success', 'Onbording Completed!');
+  }
+
+  public function storeAssignElement(Request $request)
+  {
+    $assignElement = new AssignElement();
+    $assignElement->user_id = $request['admin'];
+    $assignElement->element_id = $request['element'];
+    $assignElement->save();
+    
   }
 
   

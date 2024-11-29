@@ -6,6 +6,8 @@ use App\Http\Requests\AdminOnboardRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admindetails;
+use App\Models\AssignElement;
+use App\Models\Element;
 use App\Services\AdminService;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,7 +39,18 @@ class AdminController extends Controller
   }
   public function assignElementView()
   {
-    return view('superadmin.assignelement');
+    $element = Element::all();
+    $admin = User::where('role', 'admin')->get();
+    return view('superadmin.assignelement')->with(compact('element', 'admin'));
   }
+
+  public function storeAssignElement(Request $request)
+  {
+    $this->adminService->storeAssignElement($request);
+    return redirect()->back()->with('success', 'Element assigned successfully');
+    
+  }
+
+  
   
 }
