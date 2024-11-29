@@ -15,7 +15,7 @@ class DistributorsService
 
     public function index()
     {
-        $distributor = Distributor::all();
+        $distributor = Distributor::with('usrdetails')->get();
         return $distributor;
     }
 

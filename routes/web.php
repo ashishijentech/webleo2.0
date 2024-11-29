@@ -10,6 +10,9 @@ use App\Http\Controllers\Wlpcontroller;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\DistributorsController;
+use App\Http\Controllers\DealerController;
+
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/auth.php';
 Route::get('/', function () {
@@ -81,5 +84,8 @@ Route::middleware(['auth', 'role:manufacturer'])->group(function () {
 
 Route::middleware(['auth', 'role:distributer'])->group(function () {
     Route::get('/distributer/dashboard', [DistributorsController::class, 'dashboard'])->name('distributer.dashboard');
+    Route::get('/distributer/create/dealer', [DealerController::class, 'create'])->name('distributer.create.dealer');
+    Route::post('/distributer/store/dealer', [DealerController::class, 'store'])->name('distributer.store.dealer');
+
 
 });
