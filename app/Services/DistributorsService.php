@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Services;
+
+use App\Http\Requests\DistributorsOnboardRequest;
 use App\Models\Distributor;
 use App\Services\UserService;
+use App\Models\User;
+
+
 class DistributorsService
 {
     /**
@@ -21,12 +26,12 @@ class DistributorsService
         return view('manufacturer.createdistributor');
     }
 
-    public function store($request){
+    public function store(DistributorsOnboardRequest $request){
       $data =['name'=>$request['name'],'email'=>$request['email']];
       $user = $this->userService->store($data,'distributer');
       $distributer = new Distributor;
       $distributer->user_id = $user;
-      $distributer->manuf_id = auth()->user()->id;
+      $distributer->manuf_id = auth()->User()->id;
       $distributer->business_name = $request['business_name'];
       $distributer->gender = $request['gender'];
       $distributer->mobile = $request['mobile'];

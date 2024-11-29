@@ -73,4 +73,6 @@ class AdminService
     $detais->save();
     return redirect()->back()->with('success', 'Onbording Completed!');
   }
+
+  
 }

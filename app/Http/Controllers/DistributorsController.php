@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DistributorsOnboardRequest;
 use App\Services\DistributorsService;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class DistributorsController extends Controller
         return $this->distributorservice->create();
     }
 
-    public function store(Request $request){
+    public function store(DistributorsOnboardRequest $request){
         $this->distributorservice->store($request);
         return redirect()->back()->with('success','Distributer Added!');
     }

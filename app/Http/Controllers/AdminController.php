@@ -35,5 +35,9 @@ class AdminController extends Controller
   {
     return $this->adminService->store($request);
   }
+  public function assignElementView()
+  {
+    return view('superadmin.assignelement');
+  }
   
 }

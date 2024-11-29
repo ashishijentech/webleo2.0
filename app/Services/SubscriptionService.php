@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Services;
+
+use App\Http\Requests\SubscriptionRequest;
 use App\Models\Subscriptiondetails;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class SubscriptionService
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SubscriptionRequest $request)
     {
         //
         $newsubs = new Subscriptiondetails();
@@ -55,7 +57,7 @@ class SubscriptionService
 
         $newsubs->save();
 
-        return redirect()->back()->with('success', 'Subscription Package Added');
+        
     }
 
     /**
@@ -82,7 +84,7 @@ class SubscriptionService
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SubscriptionRequest $request, string $id)
     {
 
         $subscriptiondetails = Subscriptiondetails::find($id);

@@ -1,11 +1,13 @@
 <?php
 namespace App\Services;
+
+use App\Http\Requests\WlpOnboardRequest;
 use App\Models\WLPdetails;
 use App\Models\User;
 
 class WlpService
 {
-    public function createWlp($request)
+    public function createWlp(WlpOnboardRequest $request)
     {
       $user = new User;
       $user->name = $request['name'];

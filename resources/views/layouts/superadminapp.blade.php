@@ -229,6 +229,8 @@
                                             Component</a></li>
                                     <li class="nav-item"><a class="nav-link"
                                             href="pages/ui-features/typography.html">Component List</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{route('superadmin.assign.element')}}">Assign Element</a></li>
                                 </ul>
                             </div>
                         </li>
