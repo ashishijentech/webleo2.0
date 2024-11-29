@@ -42,6 +42,7 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::post('/superadmin/component-element', [ComponentController::class, 'store'])->name('superadmin.component.store');
 
     Route::get('/superadmin/element/component-list/{element_id}', [ComponentController::class, 'list'])->name('superadmin.element.component');
+    Route::get('/superadmin/assign-element', [AdminController::class, 'assignElementView'])->name('superadmin.assign.element');
 });
 
 

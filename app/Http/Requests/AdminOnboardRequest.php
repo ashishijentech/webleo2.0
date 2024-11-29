@@ -29,9 +29,10 @@ class AdminOnboardRequest extends FormRequest
             'gstin_no' => 'required | regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[A-Z0-9]{1}Z[A-Z0-9]{1}$/',
             'pan_no' => 'required|regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
             'contact_no' => 'required | regex:/^[6-9]\d{9}$/',
-            'gst_certificate' => 'required',
-            'pan_card' => 'required',
-            'incorporation_certificate' => 'required',
+            'gst_certificate' => 'required | file | mimes:pdf',
+            'pan_card' => 'required | file | mimes:pdf',
+            'incorporation_certificate' => 'required | file | mimes:pdf',
+            'company_logo' => 'required | file | mimes:jpg,jpeg,png',
         ];
     }
 }

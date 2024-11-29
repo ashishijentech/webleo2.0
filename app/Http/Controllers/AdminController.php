@@ -37,5 +37,9 @@ class AdminController extends Controller
    $this->adminService->store($request);
     return redirect()->back()->with('success', 'Onbording Completed!');
   }
+  public function assignElementView()
+  {
+    return view('superadmin.assignelement');
+  }
   
 }
