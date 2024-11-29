@@ -95,7 +95,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label for="">Upload GST Certificate <span
-                                                            class="badge text-danger">*</span></label>
+                                                            class="badge text-danger">*</span>(PDF Only)</label>
                                                     <input type="file" name="gst_certificate" class="form-control">
                                                     @error('gst_certificate')
                                                         <span class="text-danger">{{ $message }}</span>

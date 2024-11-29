@@ -20,6 +20,7 @@
                                         <thead class="text-white" style="background-color: #464DEE">
                                             <tr>
                                                 <th scope="col">#</th>
+                                                <td scope="col">Logo</td>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Mobile</th>
@@ -30,7 +31,8 @@
                                             @foreach ($wlp as $item)
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
-                                                    <td>{{ $item->usr->name }}</td>
+                                                     <td><img src="{{ asset('storage/'.$item->logo)}}"></td>
+                                                     <td>{{ $item->usr->name }}</td>
                                                     <td>{{ $item->usr->email }}</td>
                                                     <td>{{ $item->mobile_no }}</td>
                                                     <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"

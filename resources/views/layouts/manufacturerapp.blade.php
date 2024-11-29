@@ -268,8 +268,8 @@
                                 <ul>
                                     <li class="nav-item"><a class="nav-link"
                                             href="{{ route('manufacturer.create.distributors') }}">Create Distributors</a></li>
-                                    {{-- <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('manufacturer.create.distributors') }}">Create Distributors</a></li> --}}
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('manufacturer.distributors.list') }}">Distributors List</a></li>
                                 </ul>
                             </div>
                         </li>

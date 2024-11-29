@@ -32,6 +32,7 @@ class AdminOnboardRequest extends FormRequest
             'gst_certificate' => 'required',
             'pan_card' => 'required',
             'incorporation_certificate' => 'required',
+            'name_of_the_business_owner' => 'required',
         ];
     }
 }

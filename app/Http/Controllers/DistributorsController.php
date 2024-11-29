@@ -7,25 +7,30 @@ use Illuminate\Http\Request;
 
 class DistributorsController extends Controller
 {
-    public function __construct( private DistributorsService $distributorservice)
+    public function __construct(private DistributorsService $distributorservice)
     {
-        
+
     }
 
-    public function index(){
-        return $this->distributorservice->index();
+    public function index()
+    {
+        $distributors = $this->distributorservice->index();
+        return view("manufacturer.distributorlist")->with(compact("distributors"));
     }
 
-    public function create(){
+    public function create()
+    {
         return $this->distributorservice->create();
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->distributorservice->store($request);
-        return redirect()->back()->with('success','Distributer Added!');
+        return redirect()->back()->with('success', 'Distributer Added!');
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         return view('distributor.dashboard');
     }
 }

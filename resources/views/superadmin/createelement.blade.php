@@ -4,12 +4,12 @@
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="container">
+            <div class="container-fluid">
                 @if (Session::has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong> {{ Session::get('success') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> {{ Session::get('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
                 <div class="row">
                     <div class="col-md-6 grid-margin stretch-card">
@@ -20,7 +20,7 @@
                                     @csrf
                                     <div class="mb-2">
                                         <label for="">Elements name:</label>
-                                        <input type="text" class="form-control  form-control-sm" name="element_name">
+                                        <input type="text" class="form-control form-control-sm" name="element_name">
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                                 </form>
@@ -35,10 +35,10 @@
                                     @csrf
                                     <div class="mb-2">
                                         <label for="">Select Elements:</label>
-                                        <select name="elements" class="form-control orm-control-sm">
+                                        <select name="elements" class="form-control form-control-sm">
                                             <option selected @disabled(true)>Please select element</option>
                                             @foreach ($element as $item)
-                                                <option value="{{ $item->id }}"> {{ $item->name }}</option>
+                                            <option value="{{ $item->id }}"> {{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="">Select Type:</label>
-                                                <select name="type" id="type" class="form-select form-select-sm">
+                                                <select name="type" id="type" class="form-control form-control-sm">
                                                     <option selected>Select Option</option>
                                                     <option value="text">Text</option>
                                                     <option value="email">Email</option>
@@ -107,22 +107,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($element as $item)
-                                            <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $item->name }}</td>
-                                                <td>
-                                                    <a href="{{ route('superadmin.element.component', ['element_id' => $item->id]) }}"
-                                                        class="btn" data-toggle="tooltip"
-                                                        title="Click to view components list"><i class="mdi mdi-eye"
-                                                            style="font-size: 20px"></i></a>
-                                                </td>
-                                                <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
-                                                            style=" font-size: 20px"></i></a> <a href=""
-                                                        class="btn text-info"><i class="mdi mdi-table-edit"
-                                                            style=" font-size: 20px"></i></a></td>
-                                            </tr>
-                                        @endforeach
+                                       @if (count($element))
+                                         @foreach ($element as $item)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $item->name }}</td>
+                                            <td>
+                                                <a href="{{ route('superadd.element.component', ['element_id' => $item->id]) }}"
+                                                    class="btn" data-toggle="tooltip"
+                                                    title="Click to view components list"><i class="mdi mdi-eye"
+                                                        style="font-size: 20px"></i></a>
+                                            </td>
+                                            <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
+                                                        style=" font-size: 20px"></i></a> <a href=""
+                                                    class="btn text-info"><i class="mdi mdi-table-edit"
+                                                        style=" font-size: 20px"></i></a></td>
+                                        </tr>
+                                        @endforeach   
+                                       @else
+                                       <tr class="text-center">
+                                        <td colspan="5">Data not available</td>
+                                        </tr>    
+                                       @endif
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -135,34 +142,34 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $("body").tooltip({
-            selector: '[data-toggle=tooltip]'
-        });
+$(document).ready(function() {
+    $("body").tooltip({
+        selector: '[data-toggle=tooltip]'
+    });
+});
+
+$(document).ready(function() {
+    const $typeSelect = $('#type');
+    const $componentValueContainer = $('#component-value-container');
+    const $componentValueInput = $('#component-value');
+    const $selectOptionsContainer = $('#select-options-container');
+    const $selectOptions = $('#select-options');
+
+    // Handle type change
+    $typeSelect.on('change', function() {
+        if ($(this).val() === 'select') {
+            $componentValueContainer.hide();
+            $componentValueInput.val('');
+            $selectOptionsContainer.show();
+        } else {
+            $componentValueContainer.show();
+            $selectOptionsContainer.hide();
+        }
     });
 
-    $(document).ready(function () {
-        const $typeSelect = $('#type');
-        const $componentValueContainer = $('#component-value-container');
-        const $componentValueInput = $('#component-value');
-        const $selectOptionsContainer = $('#select-options-container');
-        const $selectOptions = $('#select-options');
-
-        // Handle type change
-        $typeSelect.on('change', function () {
-            if ($(this).val() === 'select') {
-                $componentValueContainer.hide();
-                $componentValueInput.val('');
-                $selectOptionsContainer.show();
-            } else {
-                $componentValueContainer.show();
-                $selectOptionsContainer.hide();
-            }
-        });
-
-        // Handle adding more options
-        $selectOptions.on('click', '.add-option', function () {
-            const newOptionRow = `
+    // Handle adding more options
+    $selectOptions.on('click', '.add-option', function() {
+        const newOptionRow = `
             <div class="row mb-2">
                 <div class="col-md-8">
                     <input type="text" class="form-control form-control-sm" name="options[]" placeholder="Option value">
@@ -172,14 +179,13 @@
                 </div>
             </div>
         `;
-            $selectOptions.append(newOptionRow);
-        });
-
-        // Handle removing an option
-        $selectOptions.on('click', '.remove-option', function () {
-            $(this).closest('.row').remove();
-        });
+        $selectOptions.append(newOptionRow);
     });
 
+    // Handle removing an option
+    $selectOptions.on('click', '.remove-option', function() {
+        $(this).closest('.row').remove();
+    });
+});
 </script>
 @endsection

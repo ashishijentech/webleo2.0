@@ -24,7 +24,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($details as $item)
+                                        @if (count($details)>= 1)
+                                          @foreach ($details as $item)
                                         <tr>
                                          <td>{{$loop->iteration}}</td>
                                          <td><img src="{{ asset('storage/'.$item->pluck('logo')->first()) }}"></td>
@@ -33,7 +34,13 @@
                                          <td>{{$item->pluck('usr')->pluck('email')->first()}}</td>
                                          <td>{{$item->pluck('contact_no')->first()}}</td>
                                         </tr>   
-                                        @endforeach
+                                        @endforeach   
+                                        @else
+                                        <tr class="text-center">
+                                            <td colspan="6">Data not available</td>
+                                        </tr>  
+                                        @endif
+                                       
 
                                     </tbody>
                                 </table>
