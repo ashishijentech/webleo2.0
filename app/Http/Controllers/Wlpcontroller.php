@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WlpOnboardRequest;
 use Illuminate\Http\Request;
 use App\Services\WlpService;
 
@@ -25,7 +26,7 @@ class Wlpcontroller extends Controller
         return view('admin.createwlp');
     }
 
-    public function store(Request $request){
+    public function store(WlpOnboardRequest $request){
       $this->wlpservice->createWlp($request) ;
       return redirect()->back()->with('success', 'WLP Created');
      

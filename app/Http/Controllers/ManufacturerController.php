@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ManufacturerOnboardRequest;
 use Illuminate\Http\Request;
 use App\Services\ManufacturerService;
 use App\Models\Element;
@@ -28,7 +29,7 @@ class ManufacturerController extends Controller
         return view('wlp.createmanufacturer');
     }
 
-    public function store(Request $request)
+    public function store(ManufacturerOnboardRequest $request)
     {
         $this->manufacturerservice->createManufacturer($request);
         return redirect()->back()->with('success', 'Manufacturer Added!');
