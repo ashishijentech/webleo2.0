@@ -276,7 +276,7 @@
                             const inputGroup = `
                                 <div class="col-md-3 remove">
                                     <label for="input-${item.id}" class="form-label">${item.name}</label>
-                                    <input type="text" class="form-control" id="input-${item.id}" name="${item.name}" value="${item.value}">
+                                    <input type="${item.type}" class="form-control" id="input-${item.id}" name="${item.name}" value="${item.value}">
                                 </div>
                             `;
                             
