@@ -27,20 +27,24 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        
+
         $url = "";
-        if($request->user()->role === "superadmin"){
+        if ($request->user()->role === "superadmin") {
             $url = "superadmin/dashboard";
-        }elseif($request->user()->role === "admin"){
+        } elseif ($request->user()->role === "admin") {
             $url = "admin/dashboard";
-        }elseif($request->user()->role === "wlp"){
+        } elseif ($request->user()->role === "wlp") {
             $url = "wlp/dashboard";
-        }elseif($request->user()->role === "manufacturer"){
+        } elseif ($request->user()->role === "manufacturer") {
             $url = "manufacturer/dashboard";
-        }elseif($request->user()->role === "distributer"){
+        } elseif ($request->user()->role === "distributer") {
             $url = "distributer/dashboard";
-        }else{
-            $url = "dashboard";  
+        } elseif ($request->user()->role === "dealer") {
+            $url = "dealer/dashboard";
+        } elseif ($request->user()->role === "technician") {
+            $url = "technician/dashboard";
+        } else {
+            $url = "dashboard";
         }
 
         return redirect()->intended($url);

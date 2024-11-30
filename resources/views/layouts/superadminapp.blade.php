@@ -247,14 +247,6 @@
                                             href="{{route('superadmin.create.admin')}}">Create Admin</a></li>
                                     <li class="nav-item"><a class="nav-link"
                                             href="{{route('superadmin.admin')}}">Admin List</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login
-                                            2</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/register.html">Register</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/register-2.html">Register 2</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/lock-screen.html">Lockscreen</a></li>
                                 </ul>
                             </div>
                         </li>

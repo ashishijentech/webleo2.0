@@ -240,23 +240,15 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="mdi mdi-codepen menu-icon"></i>
-                                <span class="menu-title">Client Account Mgt.</span>
+                                <span class="menu-title">Dealer Mgt.</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="submenu">
                                 <ul class="submenu-item">
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.create.admin') }}">Create Admin</a></li>
+                                            href="{{ route('distributer.create.dealer') }}">Create Dealer</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.admin') }}">Admin List</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login
-                                            2</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/register.html">Register</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/register-2.html">Register 2</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="pages/samples/lock-screen.html">Lockscreen</a></li>
+                                            href="{{ route('superadmin.admin') }}">Dealer List</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -270,9 +262,11 @@
                             <div class="submenu">
                                 <ul class="submenu-item">
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{route('admin.create.subscription')}}">Create Subscription</a></li>
+                                            href="{{ route('admin.create.subscription') }}">Create Subscription</a>
+                                    </li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{route('admin.view.subscriptionlist')}}">Subscription List</a></li>
+                                            href="{{ route('admin.view.subscriptionlist') }}">Subscription List</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

@@ -15,11 +15,12 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Manufacturer List</h4>
+                                    <h4 class="card-title">Manufacturers List</h4>
                                     <table class="table table-bordered">
                                         <thead class="text-white" style="background-color: #464DEE">
                                             <tr>
                                                 <th scope="col">#</th>
+                                                <th scope="col">Logo</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Mobile</th>
@@ -29,7 +30,8 @@
                                         <tbody>
                                             @foreach ($list as $item)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $loop->iteration }}</td>            
+                                                    <td><img src="{{ asset('storage/'.$item->logo)}}"></td>
                                                     <td>{{ $item->usrdetails->name }}</td>
                                                     <td>{{ $item->usrdetails->email }}</td>
                                                     <td>{{ $item->mobile_no }}</td>

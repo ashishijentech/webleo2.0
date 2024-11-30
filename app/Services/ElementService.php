@@ -10,11 +10,15 @@ class ElementService
     /**
      * Create a new class instance.
      */
-    public function __construct() {}
+    public function __construct()
+    {
+    }
+
 
     public function index()
     {
-        return Element::all();
+        $element = Element::all();
+        return $element;
     }
 
     public function store(Request $request)
@@ -22,6 +26,6 @@ class ElementService
         $element = new Element;
         $element->name = $request['element_name'];
         $element->save();
-        
+        return redirect()->back()->with('success', 'Element created!');
     }
 }

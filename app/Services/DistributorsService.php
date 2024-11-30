@@ -18,11 +18,14 @@ class DistributorsService
         //
     }
 
-    public function index(){
-
+    public function index()
+    {
+        $distributor = Distributor::with('usrdetails')->get();
+        return $distributor;
     }
 
-    public function create(){
+    public function create()
+    {
         return view('manufacturer.createdistributor');
     }
 
