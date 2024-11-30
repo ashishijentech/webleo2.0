@@ -11,6 +11,7 @@ use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\DistributorsController;
 use App\Http\Controllers\DealerController;
+use App\Http\Controllers\TechnicianController;
 
 
 require __DIR__ . '/auth.php';
@@ -89,5 +90,18 @@ Route::middleware(['auth', 'role:distributer'])->group(function () {
     Route::get('/distributer/create/dealer', [DealerController::class, 'create'])->name('distributer.create.dealer');
     Route::post('/distributer/store/dealer', [DealerController::class, 'store'])->name('distributer.store.dealer');
 
+
+});
+
+Route::middleware(['auth', 'role:dealer'])->group(function () {
+    Route::get('/dealer/dashboard', [DealerController::class, 'dashboard'])->name('dealer.dashboard');
+    Route::get('/dealer/create/technician', [TechnicianController::class, 'create'])->name('dealer.create.technician');
+    Route::post('/dealer/create/technician', [TechnicianController::class, 'store'])->name('dealer.store.technician');
+
+});
+
+
+Route::middleware(['auth', 'role:technician'])->group(function () {
+    Route::get('/technician/dashboard', [TechnicianController::class, 'dashboard'])->name('technician.dashboard');
 
 });

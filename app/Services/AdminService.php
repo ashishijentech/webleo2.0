@@ -76,9 +76,6 @@ class AdminService
     $detais->save();
 
   }
-<<<<<<< HEAD
-}
-=======
 
   public function storeAssignElement(Request $request)
   {
@@ -86,9 +83,11 @@ class AdminService
     $assignElement->user_id = $request['admin'];
     $assignElement->element_id = $request['element'];
     $assignElement->save();
-    
+
   }
 
-  
 }
->>>>>>> 85684102c4920c18846aca588ad94955466a8e45
+
+
+
+

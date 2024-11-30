@@ -24,12 +24,9 @@ class DistributorsController extends Controller
         return $this->distributorservice->create();
     }
 
-<<<<<<< HEAD
-    public function store(Request $request)
+
+    public function store(DistributorsOnboardRequest $request)
     {
-=======
-    public function store(DistributorsOnboardRequest $request){
->>>>>>> 85684102c4920c18846aca588ad94955466a8e45
         $this->distributorservice->store($request);
         return redirect()->back()->with('success', 'Distributer Added!');
     }
