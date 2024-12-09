@@ -8,6 +8,6 @@ class Admindetails extends Model
 {
     public function usr(): HasOne
     {
-        return $this->hasOne(User::class, 'id','user_id');
-    }  
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

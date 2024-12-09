@@ -113,7 +113,7 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $item->name }}</td>
                                             <td>
-                                                <a href="{{ route('superadd.element.component', ['element_id' => $item->id]) }}"
+                                                <a href="{{ route('superadmin.element.component', ['element_id' => $item->id]) }}"
                                                     class="btn" data-toggle="tooltip"
                                                     title="Click to view components list"><i class="mdi mdi-eye"
                                                         style="font-size: 20px"></i></a>
