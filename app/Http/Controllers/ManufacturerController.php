@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\ManufacturerService;
 use App\Models\Element;
 use App\Models\Component;
+use App\Models\ComponentOption;
 
 class ManufacturerController extends Controller
 {
@@ -49,10 +50,17 @@ class ManufacturerController extends Controller
     public function fetchComponents($id)
     {
         $components = Component::where('element_id', $id)->get();
-        if ($components->isNotEmpty()) {
-            return response()->json($components);
-        } else {
-            return response()->json(['error' => 'Data not found'], 404);
+        $data = ['type' => $components->pluck('type')];
+        foreach ($components as $key => $value) {
+            if ($components[$key]->type == 'select') {
+                $data['options'] = ComponentOption::where('name_id', $components[$key]->id)->get();
+            } else {
+                $data[] = $components;
+            }
         }
+
+
+        return response()->json($data);
+
     }
 }

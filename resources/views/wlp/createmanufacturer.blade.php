@@ -48,7 +48,7 @@
                                                     <label for="">Manufacturer Code <span
                                                             class="text-danger badge">*</span></label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="manufacturer_code">
+                                                        name="manufacturer_code" value="{{ old('manufacturer_code') }}" >
                                                     @error('manufacturer_code')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -60,13 +60,13 @@
                                                 <div class="col-md-4">
                                                     <label for="">Business Name</label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="business_name">
+                                                        name="business_name"  value="{{ old('business_name') }}" >
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="">GST Number <span
                                                             class="text-danger badge">*</span></label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="gst_number">
+                                                        name="gst_number"  value="{{ old('gst_number') }}">
                                                     @error('gst_number')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -89,7 +89,7 @@
                                                     <label for="">Manufacturer Name <span
                                                             class="text-danger badge">*</span></label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="manufacturer_name">
+                                                        name="manufacturer_name"  value="{{ old('manufacturer_name') }}">
                                                     @error('manufacturer_name')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -98,7 +98,7 @@
                                                     <label for="">Mobile No. <span
                                                             class="text-danger badge">*</span></label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="mobile_no">
+                                                        name="mobile_no"  value="{{ old('mobile_no') }}">
                                                     @error('mobile_no')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -107,7 +107,7 @@
                                                     <label for="">Email Id <span
                                                             class="text-danger badge">*</span></label>
                                                     <input type="text" class="form-control form-control-sm"
-                                                        name="email">
+                                                        name="email"  value="{{ old('email') }}">
                                                     @error('email')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -120,7 +120,7 @@
                                                 <div class="col-md-4">
                                                     <label for="">Address <span
                                                             class="text-danger badge">*</span></label>
-                                                    <textarea name="address" id="" cols="30" rows="10" class="form-control form-control-sm">
+                                                    <textarea name="address" id="" cols="30" rows="10" class="form-control form-control-sm"  value="{{ old('address') }}">
 
                                                     </textarea>
                                                 </div>
@@ -129,7 +129,7 @@
                                                         <div class="col-md-6">
                                                             <label for="">Upload Logo</label>
                                                             <input type="file" name="logo"
-                                                                class="form-control form-control-sm" id="imageInput">
+                                                                class="form-control form-control-sm" id="imageInput" value="{{ old('logo') }}" >
                                                         </div>
                                                         <div class="col-md-6 p-2 text-center" style="border: 1px dashed;">
                                                             <img src="{{url('images\2265750.webp')}}" alt="" class="img-fluid" id="imagePreview"
