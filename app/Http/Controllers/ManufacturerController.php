@@ -50,17 +50,24 @@ class ManufacturerController extends Controller
     public function fetchComponents($id)
     {
         $components = Component::where('element_id', $id)->get();
-        $data = ['type' => $components->pluck('type')];
-        foreach ($components as $key => $value) {
-            if ($components[$key]->type == 'select') {
-                $data['options'] = ComponentOption::where('name_id', $components[$key]->id)->get();
-            } else {
-                $data[] = $components;
-            }
-        }
+        $data = $components;
+        // $data = ['type' => $components->pluck('type'), 'name' => $components->pluck('name')];
+        // foreach ($components as $key => $value) {
+        //     if ($components[$key]->type == 'select') {
+        //         $data['options'] = ComponentOption::where('name_id', $components[$key]->id)->get();
+        //     } else {
+        //         $data[] = $components;
+        //     }
+        // }
 
 
         return response()->json($data);
 
+    }
+
+    public function fetchOptions($id)
+    {
+        $options = ComponentOption::where('name_id', $id)->get();
+        return response()->json($options);
     }
 }
