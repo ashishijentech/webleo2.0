@@ -37,6 +37,9 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::get('/superadmin/dashboard', [SuperController::class, 'dashboard'])->name('superadmin.dashboard');
     Route::get('/superadmin/admins-list', [AdminController::class, 'index'])->name('superadmin.admin');
+    Route::get("/superadmin/admins-edit/{id}",[AdminController::class, 'admin_edit'])->name("superadmin.admin.edit");
+    Route::put('/superadmin/admins-edit/{id}', [AdminController::class, 'admin_edit_store'])->name('superadmin.admin.update');
+    Route::delete('/superadmin/admins/{id}', [AdminController::class, 'admin_destroy'])->name('superadmin.admin.destroy');
     Route::get('/superadmin/onboard/admin', [AdminController::class, 'create'])->name('superadmin.create.admin');
     Route::post('/superadmin/onboard/admin', [AdminController::class, 'store'])->name('superadmin.store.admin');
 

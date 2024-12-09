@@ -92,6 +92,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
@@ -136,6 +137,49 @@
                                         </tbody>
                                     </table>
                                 </div>
+=======
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Elements list</h4>
+                                <table class="table table-bordered">
+                                    <thead class="text-white" style="background-color: #464DEE">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Elements name</th>
+                                            <th scope="col">Components</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       @if (count($element))
+                                         @foreach ($element as $item)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $item->name }}</td>
+                                            <td>
+                                                <a href="{{ route('superadmin.element.component', ['element_id' => $item->id]) }}"
+                                                    class="btn" data-toggle="tooltip"
+                                                    title="Click to view components list"><i class="mdi mdi-eye"
+                                                        style="font-size: 20px"></i></a>
+                                            </td>
+                                            <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
+                                                        style=" font-size: 20px"></i></a> <a href=""
+                                                    class="btn text-info"><i class="mdi mdi-table-edit"
+                                                        style=" font-size: 20px"></i></a></td>
+                                        </tr>
+                                        @endforeach   
+                                       @else
+                                       <tr class="text-center">
+                                        <td colspan="5">Data not available</td>
+                                        </tr>    
+                                       @endif
+                                       
+                                    </tbody>
+                                </table>
+>>>>>>> 2489d3898be3f1e4d3dd7b0e164e61fd083745b3
                             </div>
                         </div>
                     </div>

@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
 
-  public function __construct(private AdminService $adminService) {
-    
+  public function __construct(private AdminService $adminService)
+  {
+
   }
 
   public function index()
@@ -26,7 +27,7 @@ class AdminController extends Controller
   {
     return $this->adminService->dashboard();
   }
-  
+
 
   public function create()
   {
@@ -36,9 +37,39 @@ class AdminController extends Controller
   public function store(AdminOnboardRequest $request)
   {
 
-   $this->adminService->store($request);
+    $this->adminService->store($request);
     return redirect()->back()->with('success', 'Onbording Completed!');
   }
+  public function admin_edit_store(Request $request, $id)
+  {
+    $this->adminService->admin_edit_store($request, $id);
+    return redirect()->route("superadmin.admin")->with('success', 'Update complite!');
+  }
+  public function admin_destroy($id)
+  {
+    $admindetail = Admindetails::findOrFail($id);
+
+    // Delete the associated user
+    $user = $admindetail->usr;
+    if ($user) {
+      $user->delete(); // Delete the user from the users table
+    }
+
+    // Delete the admindetails record
+    $admindetail->delete();
+
+    return redirect()->back()->with('success', 'delate successful');
+
+  }
+
+  public function admin_edit($id)
+  {
+    // Fetch the admin details and associated user data
+    $details = Admindetails::with('usr')->findOrFail($id);
+
+    return view('superadmin.adminedit', compact('details'));
+  }
+
   public function assignElementView()
   {
     $element = Element::all();
@@ -50,9 +81,9 @@ class AdminController extends Controller
   {
     $this->adminService->storeAssignElement($request);
     return redirect()->back()->with('success', 'Element assigned successfully');
-    
+
   }
 
-  
-  
+
+
 }
