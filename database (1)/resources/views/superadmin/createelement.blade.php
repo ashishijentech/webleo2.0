@@ -267,7 +267,7 @@
                         `<div class = "col-md-4 mb-2"
                         id = "comp_val_con" >
                         <label> Component Values </label> 
-                        <select class = "form-select form-select-sm" id = "component_options" name="component_values">
+                        <select class ="form-select form-select-sm" id = "component_options" name="component_values">
                         <option selected disabled> Select Component Value </option> 
                         < /select>  
                         </div>`
@@ -345,6 +345,4 @@
             $(this).closest('.row').remove(); // Removes the specific row
         });
     </script>
-
-
 @endsection

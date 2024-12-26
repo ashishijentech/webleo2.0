@@ -16,8 +16,7 @@ return new class extends Migration {
             $table->foreign('manuf_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('element_id');
             $table->foreign('element_id')->references('id')->on('elements')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('component_id');
-            $table->foreign('component_id')->references('id')->on('components')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('label')->nullable();
             $table->string('value')->nullable();
             $table->timestamps();
         });

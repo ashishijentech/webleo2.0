@@ -87,6 +87,8 @@ Route::middleware(['auth', 'role:manufacturer'])->group(function () {
     Route::post('/manufacturer/create/distributors', [DistributorsController::class, 'store'])->name('manufacturer.store.distributors');
     Route::get('/manufacturer/distributors/list', [DistributorsController::class, 'index'])->name('manufacturer.distributors.list');
     Route::get('/manufacturer/manage/barcode', [ManufacturerController::class, 'manageBarcode'])->name('manufacturer.manage.barcode');
+    Route::get('/manufacturer/barcode/list', [BarcodeController::class, 'index'])->name('manufacturer.barcode.list');
+
     Route::get('/manufacturer/fetch/components/{id}', [ManufacturerController::class, 'fetchComponents'])->name('manufacturer.fetch.components');
     Route::get('/manufacturer/fetch/options/{id}', [ManufacturerController::class, 'fetchOptions'])->name('manufacturer.fetch.options');
     Route::get('/manufacturer/fetch/sub-components/{id}', [ManufacturerController::class, 'fetch_SubComponents'])->name('manufacturer.fetch.sub_components');

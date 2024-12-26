@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Barcode;
 class BarcodeController extends Controller
 {
+
+    public function index()
+    {
+        $barcode = Barcode::where('manuf_id', auth()->user()->id)->get()->groupBy('barcode_no');
+        return view('manufacturer.barcode')->with(compact('barcode'));
+    }
     public function store(Request $request)
     {
         $data = $request->all();
+        // dd($data);
         unset($data["_token"]);
         $element_id = $data['element'];
+        $barcode_no = $data['barcode'];
         unset($data["element"]);
         print_r($data);
         echo "<br>";
@@ -20,10 +28,12 @@ class BarcodeController extends Controller
             $barcode = new Barcode();
             $barcode->manuf_id = auth()->user()->id;
             $barcode->element_id = $element_id;
-            $barcode->component_id = $key;
+            $barcode->label = $key;
             $barcode->value = $value;
+            $barcode->barcode = $barcode_no;
             $barcode->save();
         }
+
         return redirect()->back()->with("success", "Barcode Created!");
     }
 }

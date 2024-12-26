@@ -32,6 +32,10 @@
                                                             @endforeach
                                                         </Select>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <label for="" class="form-label">Barcode No.</label>
+                                                        <input type="text" name="barcode">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -68,14 +72,14 @@
                                 <div class="col-md-3 remove">
                                     
                                    <label for="input" class="form-label text-capitalize">${component.name}</label>
-                                    <input type="${component.type}" class="form-control" name="${component.id}" placeholder="">
+                                    <input type="${component.type}" class="form-control" name="${component.name}" placeholder="">
                                 </div>
                              `
                             } else {
                                 inputcontainer = `
                                 <div class="col-md-3 remove">
                                    <label for="input" class="form-label text-capitalize">${component.name}</label>
-                                   <select class="form-select" name="${component.id}" aria-label="Default select" id="${component.id}" onchange="handleChange(this.value)">
+                                   <select class="form-select" name="${component.name}" aria-label="Default select" id="${component.id}" onchange="handleChange(this.value)">
                                     <option selected disabled>Open this select menu</option>       
                                     </select>
                                 </div>
@@ -148,7 +152,7 @@
                         const subInputContainer = `
               <div class="col-md-3 remove">
                 <label class="form-label text-capitalize">${subcomponent.name}</label>
-                <select class="form-select form-select-sm" id="subcomp${subcomponent.id}">
+                <select class="form-select form-select-sm" name="${subcomponent.name}" id="subcomp${subcomponent.id}">
                   <option selected disabled>Open this select menu</option>
                 </select>
               </div>
@@ -166,6 +170,18 @@
                             .catch(error => {
                                 console.error('Error fetching options:', error);
                             });
+                    } else {
+                        const subInputContainer = `
+    <div class="col-md-3 remove">
+        <label class="form-label text-capitalize">${subcomponent.name}</label>
+        <input type="${subcomponent.type}" class="form-control" name="subcomponent[]" 
+               value="${subcomponent.value != null ? subcomponent.value : 'Enter Value'}">
+    </div>
+`;
+
+                        $('#data-container').append(subInputContainer);
+
+
                     }
                 });
             })
