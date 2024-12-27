@@ -19,23 +19,21 @@
                                     <form action="{{ route('manufacturer.store.barcode') }}" method="post"
                                         id="edit_Distributer">
                                         @csrf
-                                        <div class="card p-1">
-                                            <div class="my-3 mx-3">
-                                                <div class="row" id ="data-container">
-                                                    <div class="col-md-3">
-                                                        <label for="" class="form-label">Select Element</label>
-                                                        <Select class="form-control" name="element" id="elementid">
-                                                            <option value="" hidden>Select Parent</option>
-                                                            @foreach ($element as $e)
-                                                                <option value="{{ $e->id }}">{{ $e->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </Select>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label for="" class="form-label">Barcode No.</label>
-                                                        <input type="text" name="barcode">
-                                                    </div>
+                                        <div class="my-3 mx-3">
+                                            <div class="row" id ="data-container">
+                                                <div class="col-md-3">
+                                                    <label for="" class="form-label">Select Element</label>
+                                                    <Select class="form-control" name="element" id="elementid">
+                                                        <option value="" hidden>Select Parent</option>
+                                                        @foreach ($element as $e)
+                                                            <option value="{{ $e->id }}">{{ $e->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </Select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="" class="form-label">Barcode No.</label>
+                                                    <input type="text" name="barcode">
                                                 </div>
                                             </div>
                                         </div>

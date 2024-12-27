@@ -14,6 +14,9 @@ use App\Http\Controllers\DealerController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\SubcomponentController;
+use App\Http\Controllers\Ajax;
+
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/auth.php';
 Route::get('/', function () {
@@ -87,13 +90,19 @@ Route::middleware(['auth', 'role:manufacturer'])->group(function () {
     Route::post('/manufacturer/create/distributors', [DistributorsController::class, 'store'])->name('manufacturer.store.distributors');
     Route::get('/manufacturer/distributors/list', [DistributorsController::class, 'index'])->name('manufacturer.distributors.list');
     Route::get('/manufacturer/manage/barcode', [ManufacturerController::class, 'manageBarcode'])->name('manufacturer.manage.barcode');
-    Route::get('/manufacturer/barcode/list', [BarcodeController::class, 'index'])->name('manufacturer.barcode.list');
+    Route::get('/manufacturer/barcode/list', action: [BarcodeController::class, 'index'])->name('manufacturer.barcode.list');
+    Route::get('/manufacturer/allocate/barcode', action: [BarcodeController::class, 'allocate'])->name('manufacturer.barcode.allocate');
 
     Route::get('/manufacturer/fetch/components/{id}', [ManufacturerController::class, 'fetchComponents'])->name('manufacturer.fetch.components');
     Route::get('/manufacturer/fetch/options/{id}', [ManufacturerController::class, 'fetchOptions'])->name('manufacturer.fetch.options');
     Route::get('/manufacturer/fetch/sub-components/{id}', [ManufacturerController::class, 'fetch_SubComponents'])->name('manufacturer.fetch.sub_components');
     Route::get('/manufacturer/fetch/sub-component/options/{sub_id}', [ManufacturerController::class, 'fetch_SubComponents_opt'])->name('manufacturer.fetch.sub_components.opt');
     Route::post('/manufacturer/store/barcode', [BarcodeController::class, 'store'])->name('manufacturer.store.barcode');
+
+
+    // ajax
+    Route::get('/manufacturer/fetch/distributer/{state}', [Ajax::class, 'fetchdistributer'])->name('manufacturer.fetch.distributer');
+
 });
 
 Route::middleware(['auth', 'role:distributer'])->group(function () {

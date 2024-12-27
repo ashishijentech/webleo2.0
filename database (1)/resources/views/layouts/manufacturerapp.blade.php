@@ -14,14 +14,17 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
-    <link rel="stylesheet" href="{{ url('multiselect/css/chosen.css') }}">        
+    <link rel="stylesheet" href="{{ url('multiselect/css/chosen.css') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url('multiselect/css/bootstrap.min.css') }}">
-    
+
     <!-- Style -->
     <link rel="stylesheet" href="{{ url('multiselect/css/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ url('images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -29,14 +32,16 @@
         .horizontal-menu .bottom-navbar .page-navigation>.nav-item.active>.nav-link:after {
             border-bottom: none;
         }
-        .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
-            height: 10px!important;
-           
+
+        .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+            /* height: 10px !important; */
+
         }
+
         .chosen-container-multi .chosen-choices {
-            text-align: center;
-             border: 1px solid gray!important;
-             
+            /* text-align: center; */
+            border: 1px solid gray !important;
+
         }
     </style>
 </head>
@@ -160,8 +165,8 @@
                                             <i class="mdi mdi-magnify"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="search" aria-label="search"
-                                        aria-describedby="search">
+                                    <input type="text" class="form-control" placeholder="search"
+                                        aria-label="search" aria-describedby="search">
                                 </div>
                             </li>
                         </ul>
@@ -178,7 +183,7 @@
                             <li class="nav-item dropdown d-lg-flex d-none">
                                 <a class="dropdown-toggle show-dropdown-arrow btn btn-inverse-primary btn-sm"
                                     id="nreportDropdown" href="#" data-bs-toggle="dropdown">
-                                   <i class="mdi mdi-wallet"></i> Wallet
+                                    <i class="mdi mdi-wallet"></i> Wallet
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                                     aria-labelledby="nreportDropdown">
@@ -247,7 +252,10 @@
                                     <li class="nav-item"><a class="nav-link"
                                             href="{{ route('manufacturer.manage.barcode') }}">Manage Barcode</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('wlp.manufacturer.list') }}">Allocate Barcode</a></li>
+                                            href="{{ route('manufacturer.barcode.list') }}">Barcode List</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                            href="{{ route('manufacturer.barcode.allocate') }}">Allocate Barcode</a>
+                                    </li>
                                     <li class="nav-item"><a class="nav-link"
                                             href="{{ route('wlp.manufacturer.list') }}">Rollback Barcode</a></li>
                                     <li class="nav-item"><a class="nav-link"
@@ -267,9 +275,11 @@
                             <div class="submenu">
                                 <ul>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('manufacturer.create.distributors') }}">Create Distributors</a></li>
+                                            href="{{ route('manufacturer.create.distributors') }}">Create
+                                            Distributors</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('manufacturer.distributors.list') }}">Distributors List</a></li>
+                                            href="{{ route('manufacturer.distributors.list') }}">Distributors List</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -362,12 +372,12 @@
 
         });
     </script>
-    <script src="{{url('/multiselect/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{url('/multiselect/js/popper.min.js')}}"></script>
-    <script src="{{url('/multiselect/js/bootstrap.min.js')}}"></script>
-    <script src="{{url('/multiselect/js/chosen.jquery.min.js')}}"></script>
-        
-    <script src="{{url('/multiselect/js/main.js')}}"></script>
+    <script src="{{ url('/multiselect/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url('/multiselect/js/popper.min.js') }}"></script>
+    <script src="{{ url('/multiselect/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('/multiselect/js/chosen.jquery.min.js') }}"></script>
+
+    <script src="{{ url('/multiselect/js/main.js') }}"></script>
 </body>
 
 </html>

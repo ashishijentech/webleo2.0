@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barcode;
+use App\Models\Distributor;
+use App\Models\IMEINO;
+use App\Models\Element;
 class BarcodeController extends Controller
 {
 
@@ -19,6 +22,9 @@ class BarcodeController extends Controller
         unset($data["_token"]);
         $element_id = $data['element'];
         $barcode_no = $data['barcode'];
+        $imei = new IMEINO;
+        $imei->IMEI_NO = $barcode_no;
+        $imei->save();
         unset($data["element"]);
         print_r($data);
         echo "<br>";
@@ -30,10 +36,18 @@ class BarcodeController extends Controller
             $barcode->element_id = $element_id;
             $barcode->label = $key;
             $barcode->value = $value;
-            $barcode->barcode = $barcode_no;
+            $barcode->barcode = $imei->id;
             $barcode->save();
         }
 
         return redirect()->back()->with("success", "Barcode Created!");
+    }
+
+    public function allocate()
+    {
+        $element = Element::all();
+        $imei = IMEINO::all();
+        $distributer = Distributor::where('manuf_id', auth()->user()->id)->get();
+        return view('manufacturer.allocate', compact('distributer', 'element', 'imei'))->render();
     }
 }

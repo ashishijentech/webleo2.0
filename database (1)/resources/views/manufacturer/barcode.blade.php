@@ -37,7 +37,14 @@
                                                             </td>
                                                         @endif
 
-                                                        <td>{{ $data->value }}</td>
+                                                        <td style="font-family:monospace">
+                                                            {{ $data->value }}</td>
+                                                        <td class="text-center">
+                                                            {{-- <a href="" class="btn btn-danger"><i
+                                                                    class="fa-solid fa-trash"></i></a> --}}
+                                                            <a href="" class="btn btn-primary"><i
+                                                                    class="fa-solid fa-file-pen"></i></a>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
