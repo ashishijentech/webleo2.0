@@ -9,28 +9,21 @@
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Component List <small style="font-size:10px">(by element)</small></h4>
+                                <h4 class="card-title">Sub Component List <small style="font-size:10px">(by component)</small></h4>
                                 <table class="table table-bordered">
                                     <thead class="text-white" style="background-color: #464DEE">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Components name</th>
-                                            <th scope="col">Sub Components</th>
-                                            <th scope="col">Components value</th>
+                                            <th scope="col">SubComponents name</th>
+                                            <th scope="col">SubComponents value</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($component as $item)
+                                        @foreach ($subcomponent as $item)
                                         <tr>
                                             <th scope="row">{{$loop->iteration}}</th>
                                             <td>{{$item->name}}</td>
-                                            <td>
-                                                <a href="{{ route('superadmin.element.component.subcomponent', ['component_id' => $item->id]) }}"
-                                                    class="btn" data-toggle="tooltip"
-                                                    title="Click to view sub components list"><i class="mdi mdi-eye"
-                                                        style="font-size: 20px"></i></a>
-                                            </td>
                                             <td>{{$item->value}}</td>
                                             <td>
                                                 <a href=" " class="btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="mdi mdi-delete"
@@ -45,7 +38,7 @@
                                                             </div>
 
                                                             <div class="modal-body">
-                                                                <form id="editForm" action="{{ route('superadmin.component.edit', ['id' => $item->id]) }} " method="POST">
+                                                                <form id="editForm" action="{{ route('superadmin.subcomponent.edit', ['id' => $item->id]) }} " method="POST">
                                                                     @csrf
                                                                     @method('PUT')
                                                                     <div class="mb-3">
@@ -79,7 +72,7 @@
                                                                 <p>Are you sure you want to delete this component?</p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form id="deleteForm" action=" {{ route('superadmin.component.destroy', ['id' => $item->id]) }} " method="POST">
+                                                                <form id="deleteForm" action="{{ route('superadmin.subcomponent.destroy', ['id' => $item->id]) }} " method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

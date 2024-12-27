@@ -50,6 +50,18 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/superadmin/fetch-component/{id}', action: [ComponentController::class, 'fetchcomponentvalue'])->name('superadmin.subcomponent.fetchcomponentvalue');
     Route::post('/superadmin/store-subcomponent', action: [SubcomponentController::class, 'store'])->name(name: 'superadmin.subcomponent.store');
 
+    Route::put('/superadmin/element/edit/{id}', [ElementController::class, 'edit'])->name('superadmin.element.edit');
+    Route::delete('superadmin/element/{id}', [ElementController::class, 'destroy'])->name('superadmin.element.destroy');
+
+    Route::put('/superadmin/component/edit/{id}', [ComponentController::class, 'edit'])->name('superadmin.component.edit');
+    Route::delete('superadmin/component/{id}', [ComponentController::class, 'destroy'])->name('superadmin.component.destroy');
+
+    Route::put('/superadmin/subcomponent/edit/{id}', [SubcomponentController::class, 'edit'])->name('superadmin.subcomponent.edit');
+    Route::delete('superadmin/subcomponent/{id}', [SubcomponentController::class, 'destroy'])->name('superadmin.subcomponent.destroy');
+
+    Route::get('/superadmin/element/component/subcomponent-list/{component_id}', [SubcomponentController::class, 'list'])->name('superadmin.element.component.subcomponent');
+
+
     Route::get('/superadmin/element/component-list/{element_id}', [ComponentController::class, 'list'])->name('superadmin.element.component');
     Route::get('/superadmin/assign-element', [AdminController::class, 'assignElementView'])->name('superadmin.assign.element');
     Route::post('/superadmin/assign-element', [AdminController::class, 'storeAssignElement'])->name('superadmin.assign.element.store');

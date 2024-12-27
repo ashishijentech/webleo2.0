@@ -30,4 +30,26 @@ class SubcomponentController extends Controller
         return redirect()->back()->with("success", "Sub Component Created!");
 
     }
+
+    public function list($component_id)
+    {
+        $subcomponent = SubComponentValue_select::where('component_id', $component_id)->get();
+        return view('superadmin.subcomponetlist')->with(compact('subcomponent'));
+    }
+
+    public function edit(Request $request ,$id)
+    {
+        $subcomponent = SubComponentValue_select::find($id);
+        $subcomponent->name = $request->input('name');
+        $subcomponent->value = $request->input('value');
+        $subcomponent->save();
+        return redirect()->back()->with('success', 'Sub Component updated!');
+    }
+
+    public function destroy($id)
+    {
+        $subcomponent = SubComponentValue_select::find($id);
+        $subcomponent->delete();
+        return redirect()->back()->with('success', 'Sub Component deleted!');
+    }
 }

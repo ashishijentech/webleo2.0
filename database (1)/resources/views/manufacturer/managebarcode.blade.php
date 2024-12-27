@@ -1,47 +1,50 @@
 @extends('layouts.manufacturerapp')
 
 @section('content')
-    <div class="container-fluid page-body-wrapper">
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="container">
-                    @if (Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong> {{ Session::get('success') }}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-                    <div class="row">
-                        <div class="col-md-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Manage Barcode</h4>
-                                    <form action="{{ route('manufacturer.store.barcode') }}" method="post"
-                                        id="edit_Distributer">
-                                        @csrf
-                                        <div class="card p-1">
-                                            <div class="my-3 mx-3">
-                                                <div class="row" id ="data-container">
-                                                    <div class="col-md-3">
-                                                        <label for="" class="form-label">Select Element</label>
-                                                        <Select class="form-control" name="element" id="elementid">
-                                                            <option value="" hidden>Select Parent</option>
-                                                            @foreach ($element as $e)
-                                                                <option value="{{ $e->id }}">{{ $e->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </Select>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label for="" class="form-label">Barcode No.</label>
-                                                        <input type="text" name="barcode">
-                                                    </div>
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="container">
+                @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> {{ Session::get('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Manage Barcode</h4>
+                                <form action="{{ route('manufacturer.store.barcode') }}" method="post"
+                                    id="edit_Distributer">
+                                    @csrf
+                                    <div class="card p-1">
+                                        <div class="my-3 mx-3">
+                                            <div class="row" id="data-container">
+                                                <div class="col-md-3">
+                                                    <label for="" class="form-label">Select Element</label>
+                                                    <Select class="form-control" name="element" id="elementid">
+                                                        <option value="" hidden>Select Parent</option>
+                                                        @foreach ($element as $e)
+                                                        <option value="{{ $e->id }}">{{ $e->name }}
+                                                        </option>
+                                                        @endforeach
+                                                    </Select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="file" class="form-label">Creation type</label>
+                                                    <input type="file" name="file" id="file" class="form-control" accept=".xlsx, .xls" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="" class="form-label">Barcode No.</label>
+                                                    <input type="text" name="barcode">
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-2">Save</button>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -49,6 +52,7 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

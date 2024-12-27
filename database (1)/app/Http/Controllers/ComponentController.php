@@ -29,4 +29,21 @@ class ComponentController extends Controller
         return response()->json($data);
     }
 
+    public function edit(Request $request ,$id)
+    {
+        $element = Component::find($id);
+        $element->name = $request->input('name');
+        $element->value = $request->input('value');
+        $element->save();
+        return redirect()->back()->with('success', 'Component updated!');
+    }
+
+    public function destroy($id)
+    {
+        $element = Component::find($id);
+        $element->delete();
+        return redirect()->back()->with('success', 'Component deleted!');
+    }
+
+
 }
