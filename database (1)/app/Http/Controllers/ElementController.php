@@ -27,4 +27,20 @@ class ElementController extends Controller
         $this->elementService->store($request);
         return redirect()->back()->with('success', 'Element created!');
     }
+
+    public function edit(Request $request, $id)
+    {
+        $element = Element::find($id);
+        $element->name = $request->input('name');
+        $element->save();
+        return redirect()->back()->with('success', 'Element updated!');
+    }
+
+    public function destroy($id)
+    {
+        $element = Element::find($id);
+        $element->delete();
+        return redirect()->back()->with('success', 'Element deleted!');
+    }
+
 }

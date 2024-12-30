@@ -225,12 +225,10 @@
                             <div class="submenu">
                                 <ul>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{ route('superadmin.element.create') }}">Create Elements &
-                                            Component</a></li>
+                                            href="{{ route('superadmin.element.create') }}">Manage Elements </a></li>
+                                    <li class="nav-item"><a class="nav-link" href="">Component List</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="pages/ui-features/typography.html">Component List</a></li>
-                                    <li class="nav-item"><a class="nav-link"
-                                            href="{{route('superadmin.assign.element')}}">Assign Element</a></li>
+                                            href="{{ route('superadmin.assign.element') }}">Assign Element</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -244,9 +242,9 @@
                             <div class="submenu">
                                 <ul class="submenu-item">
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{route('superadmin.create.admin')}}">Create Admin</a></li>
+                                            href="{{ route('superadmin.create.admin') }}">Create Admin</a></li>
                                     <li class="nav-item"><a class="nav-link"
-                                            href="{{route('superadmin.admin')}}">Admin List</a></li>
+                                            href="{{ route('superadmin.admin') }}">Admin List</a></li>
                                 </ul>
                             </div>
                         </li>

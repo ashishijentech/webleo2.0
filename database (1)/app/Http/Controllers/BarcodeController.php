@@ -29,7 +29,9 @@ class BarcodeController extends Controller
         print_r($data);
         echo "<br>";
         #echo $element_id;
+
         foreach ($data as $key => $value) {
+            ;
             echo "" . $key . "" . $value . "<br>";
             $barcode = new Barcode();
             $barcode->manuf_id = auth()->user()->id;

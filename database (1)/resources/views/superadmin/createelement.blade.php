@@ -11,161 +11,46 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    <div class="row">
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Create Elements</h4>
-                                    <form action="{{ route('superadmin.element.store') }}" method="post">
-                                        @csrf
-                                        <div class="mb-2">
-                                            <label for="">Elements name:</label>
-                                            <input type="text" class="form-control form-control-sm" name="element_name">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                    </form>
-                                </div>
+                    <div class="my-2" style="background-color: #260950">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4 class="card-title text-white px-2 py-3">Manage Elements</h4>
                             </div>
-                        </div>
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Create Component</h4>
-                                    <form action="{{ route('superadmin.component.store') }}" method="post">
-                                        @csrf
-                                        <div class="mb-2">
-                                            <label for="">Select Elements:</label>
-                                            <select name="elements" class="form-control form-control-sm">
-                                                <option selected @disabled(true)>Please select element</option>
-                                                @foreach ($element as $item)
-                                                    <option value="{{ $item->id }}"> {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-2">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label for="">Component name:</label>
-                                                    <input type="text" class="form-control form-control-sm"
-                                                        name="component_name">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="">Select Type:</label>
-                                                    <select name="type" id="type"
-                                                        class="form-control form-control-sm">
-                                                        <option selected>Select Option</option>
-                                                        <option value="text">Text</option>
-                                                        <option value="email">Email</option>
-                                                        <option value="number">Number</option>
-                                                        <option value="file">File</option>
-                                                        <option value="select">Select</option>
-                                                        <option value="Radio">Radio</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4" id="component-value-container">
-                                                    <label for="">Component value:</label>
-                                                    <input type="text" class="form-control form-control-sm"
-                                                        name="component_value">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="select-options-container" style="display: none;">
-                                            <label for="">Options:</label>
-                                            <div id="select-options">
-                                                <div class="row mb-2">
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control form-control-sm"
-                                                            name="options[]" placeholder="Option value">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button type="button" class="btn btn-success btn-sm add-option">Add
-                                                            More</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Create Sub Component</h4>
-                            <form action="{{ route('superadmin.subcomponent.store') }}" method="post">
-                                @csrf
-                                <div class="mb-2">
-                                    <div class="row">
-                                        <div class="col-md-4 mb-2" id="comp-container">
-                                            <label for="">Select Component:</label>
-                                            <select class="form-select form-select-sm" name="component" id="component">
-                                                <option disabled selected>components List:</option>
-                                                @foreach ($components as $item)
-                                                    <option value="{{ $item->id }}" type="{{ $item->type }}">
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label for="">Sub Component Name:</label>
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="sub_component_name">
-                                        </div>
-                                        <div class="col-md-3 mb-2" id="sub_component_type_cont">
-                                            <label for="">Sub Component Type:</label>
-                                            <select name="sub_component_type" id="sub_component_type"
-                                                class="form-select form-select-sm">
-                                                <option selected>Select Option</option>
-                                                <option value="text">Text</option>
-                                                <option value="email">Email</option>
-                                                <option value="number">Number</option>
-                                                <option value="file">File</option>
-                                                <option value="select">Select</option>
-                                                <option value="Radio">Radio</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div id="sub-options-container" style="display:none;">
-                                                <label for="">Options:</label>
-                                                <div id="select-options">
-                                                    <div class="row mb-2">
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control form-control-sm"
-                                                                name="options[]" placeholder="Option value">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <button type="button" class="btn btn-success btn-sm"
-                                                                id="add_suv_comp_opt">Add
-                                                                More</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="col-md-8">
+                                <div class="d-flex flex-wrap justify-content-end">
+                                    <div class="p-2 text-white"><a href="" class="btn btn-sm text-white"
+                                            style="border: 1px solid #fff">Details</a></div>
+                                    <div class="p-2 text-white">
+                                        {{-- <a href="" class="btn btn-sm text-white"
+                                            style="border: 1px solid #fff">Add
+                                            Element</a>  --}}
+                                        <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
+                                            data-bs-target="#add_element" style="border: 1px solid #fff">
+                                            Add
+                                            Element
+                                        </button>
+                                        <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
+                                            data-bs-target="#add_element_type" style="border: 1px solid #fff">
+                                            Add
+                                            Element Type
+                                        </button>
+                                        <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
+                                            data-bs-target="#add_device_model_no" style="border: 1px solid #fff">
+                                            Add
+                                            Device Model No
+                                        </button>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Element List --}}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+                {{-- Element List --}}
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Elements list</h4>
+                        <h4 class="">Elements list</h4>
                         <table class="table table-bordered">
-                            <thead class="text-white" style="background-color: #464DEE">
+                            <thead class="text-white" style="background-color: #260950">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Elements name</th>
@@ -185,10 +70,76 @@
                                                     title="Click to view components list"><i class="mdi mdi-eye"
                                                         style="font-size: 20px"></i></a>
                                             </td>
-                                            <td><a href=" " class="btn text-danger"><i class="mdi mdi-delete"
+                                            <td>
+                                                <a href=" " class="btn text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal"><i class="mdi mdi-delete"
                                                         style=" font-size: 20px"></i></a>
-                                                <a href="" class="btn text-info"><i class="mdi mdi-table-edit"
+
+                                                <div class="modal fade" id="editModal" tabindex="-1"
+                                                    aria-labelledby="editModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="editModalLabel">Edit Element
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+                                                            <div class="modal-body">
+                                                                <form id="editForm"
+                                                                    action="{{ route('superadmin.element.edit', ['id' => $item->id]) }} "
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <div class="mb-3">
+                                                                        <label for="itemName" class="form-label">Enter new
+                                                                            element name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="itemName" name="name" value=""
+                                                                            required>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary mt-2">Save
+                                                                        Changes</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <a href="" class="btn text-info" data-bs-toggle="modal"
+                                                    data-bs-target="#editModal"><i class="mdi mdi-table-edit"
                                                         style=" font-size: 20px"></i></a>
+
+                                                <div class="modal fade" id="deleteModal" tabindex="-1"
+                                                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteModalLabel">Confirm
+                                                                    Delete</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Are you sure you want to delete this element?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form id="deleteForm"
+                                                                    action=" {{ route('superadmin.element.destroy', ['id' => $item->id]) }} "
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -205,6 +156,139 @@
             </div>
         </div>
     </div>
+
+
+
+    <!--Add Element Modal -->
+    <div class="modal fade" id="add_element" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fs-5" id="exampleModalLabel">Add Element</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('superadmin.element.store') }}" method="post">
+                        @csrf
+                        <div class="mb-2">
+                            <label for="" class="form-label">Elements name:</label>
+                            <input type="text" class="form-control form-control-sm" name="element_name"
+                                placeholder="Enter element name">
+                        </div>
+                        <button type="submit" class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-sm" style="background-color: #260950">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Add Element Type Modal -->
+    <div class="modal fade" id="add_element_type" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fs-5" id="exampleModalLabel">Add Element Type</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('superadmin.element.type.store') }}" method="post">
+                        @csrf
+                        <div class="my-2">
+                            <label for="" class="form-label">Select Element</label>
+                            <select name="element" class="form-select form-select-sm">
+                                <option selected disabled>Element List:</option>
+                                @foreach ($element as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="" class="form-label">Type</label>
+                            <input type="text" class="form-control form-control-sm" name="type"
+                                placeholder="Enter type">
+                        </div>
+                        <button type="submit" class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-sm" style="background-color: #260950">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Add device Model No -->
+    <div class="modal fade" id="add_device_model_no" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fs-5" id="exampleModalLabel">Add Device Model Number</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('superadmin.model_no.store') }}" method="post">
+                        @csrf
+                        <div class="my-2">
+                            <label for="" class="form-label">Select Element</label>
+                            <select name="element" class="form-select form-select-sm" id="element">
+                                <option selected disabled>Element List:</option>
+                                @foreach ($element as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="" class="form-label">Select Type</label>
+                            <select name="" class="form-select form-select-sm" id="element_type"></select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="" class="form-label">Model No</label>
+                            <input type="text" class="form-control form-control-sm" placeholder="Enter model no">
+                        </div>
+                        <button type="submit" class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-sm" style="background-color: #260950">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            const $element = $('#element');
+            $element.on('change', function() {
+                alert($(this).val());
+                $('#element_type').empty();
+                $.ajax({
+                    url: `/superadmin/fetch/element-type/${$(this).val()}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        alert(data);
+                        data.forEach(type => {
+                            $('#element_type').append(`
+                                                 <option value="${type.id}">${type.type}</option>
+                                       `);
+                        });
+                    }
+                })
+
+            });
+        });
+    </script>
+
 
     <script>
         $(document).ready(function() {
@@ -345,4 +429,17 @@
             $(this).closest('.row').remove(); // Removes the specific row
         });
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
