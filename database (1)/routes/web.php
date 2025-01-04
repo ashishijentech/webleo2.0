@@ -17,7 +17,8 @@ use App\Http\Controllers\SubcomponentController;
 use App\Http\Controllers\Ajax;
 use App\Http\Controllers\ElementTypeController;
 use App\Http\Controllers\ModleNoController;
-
+use App\Http\Controllers\DevicePartNoController;
+use App\Http\Controllers\CustomfieldsController;
 
 
 require __DIR__ . '/auth.php';
@@ -36,6 +37,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Ajax route 
+    Route::get('/superadmin/fetch/element-type/{element_id}', [Ajax::class, 'fetchElementTypeByElemeNt'])->name('superadmin.fetch.element.type');
+    Route::get('/superadmin/fetch/model-no/{type_id}', [Ajax::class, 'fetchModelNoByType'])->name('superadmin.fetch.model-no');
+    Route::get('/superadmin/fetch/part-no/{model_id}', [Ajax::class, 'fetchPartNoByModel'])->name('superadmin.fetch.part_no');
+    Route::get('/fetch/customFields/element/{id}/{parent}', [Ajax::class, 'fetchCustomFields'])->name('superadmin.fetch.custom.fields');
+
 });
 
 
@@ -59,11 +67,14 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::post('/superadmin/element-type/store', [ElementTypeController::class, 'store'])->name('superadmin.element.type.store');
     Route::post('/superadmin/model-no/store', [ModleNoController::class, 'store'])->name('superadmin.model_no.store');
+    Route::post('/superadmin/part-no/store', [DevicePartNoController::class, 'store'])->name('superadmin.part_no.store');
+    Route::post('/superadmin/custom-fields/store', [CustomfieldsController::class, 'store'])->name('superadmin.customFields.store');
+
     Route::put('/superadmin/element/edit/{id}', [ElementController::class, 'edit'])->name('superadmin.element.edit');
     Route::delete('superadmin/element/{id}', [ElementController::class, 'destroy'])->name('superadmin.element.destroy');
 
     Route::put('/superadmin/component/edit/{id}', [ComponentController::class, 'edit'])->name('superadmin.component.edit');
-    Route::delete('superadmin/component/{id}', [ComponentController::class, 'destroy'])->name('superadmin.component.destroy');
+    Route::delete('/superadmin/component/{id}', [ComponentController::class, 'destroy'])->name('superadmin.component.destroy');
 
     Route::put('/superadmin/subcomponent/edit/{id}', [SubcomponentController::class, 'edit'])->name('superadmin.subcomponent.edit');
     Route::delete('superadmin/subcomponent/{id}', [SubcomponentController::class, 'destroy'])->name('superadmin.subcomponent.destroy');
@@ -75,9 +86,6 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/superadmin/assign-element', [AdminController::class, 'assignElementView'])->name('superadmin.assign.element');
     Route::post('/superadmin/assign-element', [AdminController::class, 'storeAssignElement'])->name('superadmin.assign.element.store');
 
-
-    //Ajax route 
-    Route::get('/superadmin/fetch/element-type/{element_id}', [Ajax::class, 'fetchElementTypeByElemeNt'])->name('superadmin.fetch.element.type');
 
 });
 

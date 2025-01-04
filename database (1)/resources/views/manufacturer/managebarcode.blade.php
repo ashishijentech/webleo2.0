@@ -4,76 +4,453 @@
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
             <div class="content-wrapper">
-                <h4 class="card-title px-2">Manage Barcode</h4>
-                {{-- <div class="container-fluid"> --}}
-                @if (Session::has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong> {{ Session::get('success') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Add Barcode</h4>
-                                <form action="{{ route('manufacturer.store.barcode') }}" method="post"
-                                    id="edit_Distributer">
-                                    @csrf
-                                    <div class="my-3 mx-3">
-                                        <div class="row" id ="data-container">
-                                            <div class="col-md-3">
-                                                <label for="" class="form-label">Select Element</label>
-                                                <Select name="element" id="elementid" class="form-select form-select-sm">
-                                                    <option value="" hidden>Select Parent</option>
-                                                    @foreach ($element as $e)
-                                                        <option value="{{ $e->id }}">{{ $e->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </Select>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label for="file" class="form-label">Creation
-                                                    type</label>
-                                                <input type="file" name="file" id="file"
-                                                    class="form-control form-control-sm" accept=".xlsx, .xls">
-                                            </div>
-                                            <div class="col-md-3">
-
-                                                <label for="" class="form-label">Barcode No.</label>
-                                                <input type="text" name="barcode" class="form-control form-control-sm">
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label for="">Batch No.</label>
-                                                <input type="text" class="form-control form-control-sm"
-                                                    value="{{ $batchNo }}">
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label for="">Renewal</label>
-                                                <select name="" class="form-control" id="" name="renewal">
-                                                    <option value="yes">yes</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="my-2">
-                                        <button type="submit" class="btn btn-primary mt-2">Save</button>
-                                    </div>
-                                </form>
+                <div class="my-2" style="background-color: #260950">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="card-title text-white px-2 py-3">Manage Bar Codes</h4>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="d-flex flex-wrap justify-content-md-end justify-content-sm-center">
+                                <div class="p-2 text-white">
+                                    {{-- <a href="" class="btn btn-sm text-white"
+                                            style="border: 1px solid #fff">Add
+                                            Element</a>  --}}
+                                    <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
+                                        data-bs-target="#add_barcode" style="border: 1px solid #fff;white-space: nowrap;">
+                                        Add
+                                        Barcode
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- </div> --}}
+                <div class="container-fluid">
+                    @if (Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong> {{ Session::get('success') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    <div class="card p-2 my-2">
+                        <h3 class="card-header"><i>Barcode List</i></h3>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>Device Serial No</th>
+                                        <th>IMEI No </th>
+                                        <th>Type</th>
+                                        <th>Model No</th>
+                                        <th>Part No </th>
+                                        <th>Barcode Type</th>
+                                        <th>Created At </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($barcode as $key => $value)
+                                            <tr>
+                                                <td>
+                                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal" title="Device Info!">
+                                                        {{ $barcode[$key]->serialNumber }}
+                                                    </button>
+                                                </td>
+                                                <td>{{ $barcode[$key]->serialNumber }}</td>
+                                                <td>{{ $barcode[$key]->elementType->pluck('type')->first() }}</td>
+                                                <td>{{ $barcode[$key]->modelNo->pluck('model_no')->first() }}</td>
+                                                <td>{{ $barcode[$key]->partNo->pluck('part_no')->first() }}</td>
+                                                <td>NEW</td>
+                                                <td>{{ $barcode[$key]->created_at }}</td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+    <div class="modal fade" id="add_barcode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fs-5" id="exampleModalLabel">Manage Barcode</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="device-part-model">
+                    <form action="{{ route('manufacturer.store.barcode') }}" method="post">
+                        @csrf
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Select Element</label>
+                                <select name="element" class="form-select form-select-sm element">
+                                    <option selected disabled>Element List:</option>
+                                    @foreach ($element as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Select Type</label>
+                                <select name="element_type" class="form-select form-select-sm element_type"></select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Select Model No</label>
+                                <select name="model_no" class="form-select form-select-sm model-no">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Enter Device Part No</label>
+                                <select name="device_part_no" class="form-select form-select-sm partNo"></select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="voltage" class="form-label">Voltage</label>
+                                <input type="text" class="form-control form-control-sm" name="voltage" value="12v">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="batchNo" class="form-label">Batch No</label>
+                                <input type="text" name="batchNo" id="batchNo" value="{{ $batchNo }}"
+                                    class="form-control form-control-sm">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="BarCodeCreationType" class="form-label">BarCode Creation
+                                    Type </label>
+                                <select class="form-select form-select-sm" name="BarCodeCreationType"
+                                    id="BarCodeCreationType">
+                                    <option value="select type">Select Creation Type</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Import">Import</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label">Barcode No</label>
+                                <input type="text" class="form-control form-control-sm" name="barcodeNo">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-label">Is Renew</label><br>
+                                <select name="is_renew" id="" class="form-select form-select-sm">
+                                    <option value="1">Yes</option>
+                                    <option value="0">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" id="unique_id">
+                                <div class="mb-3">
+                                    <label for="UniqueID" class="form-label">Unique ID</label>
+                                    <input type="text" name="UniqueID" id="UniqueID"
+                                        class="form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2" id="customFields">
+
+                        </div>
+
+                        <button class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-sm" style="background-color: #260950">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Details Modal --}}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        th {
+            color: #260950;
+
+        }
+
+        table,
+        thead,
+        tbody {
+            border-color: #260950;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        < script >
+            // Initialize tooltips globally
+            document.addEventListener('DOMContentLoaded', function() {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            });
+    </script>
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            const $element = $('.element');
+            $element.on('change', function() {
+                const selectedValue = $(this).val();
+                console.log('Selected Value:', selectedValue); // Log the selected value for debugging
+                const $form = $(this).parents("form"); // Cache the form for reuse
+                const $elementType = $form.find(
+                    ".element_type"); // Target the dropdown within the same form
+
+                $elementType.empty(); // Clear previous options
+                $elementType.append('<option value="">Loading...</option>'); // Temporary loading indicator
+
+                $.ajax({
+                    url: `/superadmin/fetch/element-type/${selectedValue}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $elementType.empty(); // Clear loading message
+                        if (data && data.length > 0) {
+                            data.forEach(type => {
+                                $elementType.append(
+                                    `<option value="${type.id}">${type.type}</option>`
+                                );
+                            });
+                        } else {
+                            $elementType.append(
+                                '<option value="">No options available</option>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+                        $elementType.empty();
+                        $elementType.append('<option value="">Failed to load options</option>');
+                    }
+                });
+
+                $.ajax({
+                    url: `/fetch/customFields/element/${selectedValue}/element`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data && data.length > 0) {
+                            alert(JSON.stringify(data));
+                            // data.forEach(type => {
+                            //     $elementType.append(
+                            //         `<option value="${type.id}">${type.type}</option>`
+                            //     );
+                            // });
+                        } else {
+                            alert('Data not available');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+
+                        alert('Failed to load options');
+                    }
+                });
+
+            });
+
+            const $element_type = $('.element_type');
+            $element_type.on('change', function() {
+                alert($(this).val());
+                const $form = $(this).parents("form"); // Cache the form for reuse
+                const $model_no = $form.find(
+                    ".model-no"); // Target the dropdown within the same form
+                const $customFieldsContainer = $form.find(
+                    ".type");
+                $customFieldsContainer.remove();
+                $model_no.empty(); // Clear previous options
+                $model_no.append('<option value="">Loading...</option>'); // Temporary loading indicator
+
+                $.ajax({
+                    url: `/superadmin/fetch/model-no/${$(this).val()}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $model_no.empty(); // Clear loading message
+                        if (data && data.length > 0) {
+                            data.forEach(modelNo => {
+                                $model_no.append(
+                                    `<option value="${modelNo.id}">${modelNo.model_no}</option>`
+                                );
+                            });
+                        } else {
+                            $model_no.append(
+                                '<option value="">No options available</option>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+                        $model_no.empty();
+                        $model_no.append('<option value="">Failed to load options</option>');
+                    }
+                });
+
+
+                $.ajax({
+                    url: `/fetch/customFields/element/${$(this).val()}/type`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data && data.length > 0) {
+                            const $customFieldsContainer = $('#customFields');
+                            data.forEach(fields => {
+                                alert(JSON.stringify(fields));
+                                let fieldHtml =
+                                    ''; // Initialize variable to store HTML content
+
+                                switch (fields.colSize) {
+                                    case 2:
+                                        fieldHtml = `
+                                  <div class="col-md-3 type">
+                                  <label>${fields.select}</label>
+                                    <input type="${fields.inputType}" class="form-control form-control-sm" name="${fields.id}">
+                                  </div>
+                                   `;
+                                        break;
+                                    case 4:
+                                        fieldHtml = `
+                                  <div class="col-md-3 type">
+                                  <label>${fields.select}</label>
+                                    <input type="${fields.inputType}" class="form-control form-control-sm" name="${fields.id}">
+                                  </div>
+                                   `;
+                                        break;
+                                    case 6:
+                                        fieldHtml = `
+                                  <div class="col-md-6">
+                                  <label>${fields.select}</label>
+                                    <input type="${fields.inputType}" class="form-control form-control-sm" name="${fields.select}">
+                                  </div>
+                                   `;
+                                        break;
+
+                                        // Add more cases here if needed
+                                        // e.g., case 6, case 12, etc.
+
+                                    default:
+                                        console.warn(
+                                            `Unsupported colSize: ${fields.colSize}`
+                                        );
+                                        break;
+                                }
+
+                                // Append the generated HTML if it's not empty
+                                if (fieldHtml) {
+                                    $customFieldsContainer.append(fieldHtml);
+                                }
+                            });
+                        } else {
+                            console.warn('No fields available to display.');
+                        }
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+
+                        alert('Failed to load options');
+                    }
+                });
+            })
+
+
+            const $modelNo = $('.model-no');
+            $modelNo.on('change', function() {
+                alert($(this).val());
+                const $form = $(this).parents("form"); // Cache the form for reuse
+                const $partNo = $form.find(
+                    ".partNo"); // Target the dropdown within the same form
+                $partNo.empty(); // Clear previous options
+                $partNo.append('<option value="">Loading...</option>'); // Temporary loading indicator
+
+
+                $.ajax({
+                    url: `/superadmin/fetch/part-no/${$(this).val()}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $partNo.empty(); // Clear loading message
+                        if (data && data.length > 0) {
+                            data.forEach(partlNo => {
+                                $partNo.append(
+                                    `<option value="${partlNo.id}">${partlNo.part_no}</option>`
+                                );
+                            });
+                        } else {
+                            $partNo.append(
+                                '<option value="">No options available</option>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+                        $partNo.empty();
+                        $partNo.append('<option value="">Failed to load options</option>');
+                    }
+                });
+
+
+                $.ajax({
+                    url: `/fetch/customFields/element/${$(this).val()}/modelNo`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data && data.length > 0) {
+                            alert(JSON.stringify(data));
+                            // data.forEach(type => {
+                            //     $elementType.append(
+                            //         `<option value="${type.id}">${type.type}</option>`
+                            //     );
+                            // });
+                        } else {
+                            alert('Data not available');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+
+                        alert('Failed to load options');
+                    }
+                });
+
+            })
+        });
+    </script>
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+
+{{-- <script>
     $(document).ready(function() {
         $('#elementid').change(function() {
             $(".remove").remove();
@@ -210,4 +587,4 @@
                 console.error('Error fetching sub-components:', error);
             });
     }
-</script>
+</script> --}}

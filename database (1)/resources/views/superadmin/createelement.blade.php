@@ -14,30 +14,49 @@
                     <div class="my-2" style="background-color: #260950">
                         <div class="row">
                             <div class="col-md-4">
-                                <h4 class="card-title text-white px-2 py-3">Manage Elements</h4>
+                                <h4 class="card-title text-white px-2 py-3">Manage Barcode Elements</h4>
                             </div>
                             <div class="col-md-8">
-                                <div class="d-flex flex-wrap justify-content-end">
-                                    <div class="p-2 text-white"><a href="" class="btn btn-sm text-white"
-                                            style="border: 1px solid #fff">Details</a></div>
+                                <div class="d-flex flex-wrap justify-content-md-end justify-content-sm-center">
+                                    {{-- <div class="p-2 text-white"><a href="" class="btn btn-sm text-white"
+                                            style="border: 1px solid #fff">Details</a></div> --}}
                                     <div class="p-2 text-white">
                                         {{-- <a href="" class="btn btn-sm text-white"
                                             style="border: 1px solid #fff">Add
                                             Element</a>  --}}
                                         <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
-                                            data-bs-target="#add_element" style="border: 1px solid #fff">
+                                            data-bs-target="#add_element"
+                                            style="border: 1px solid #fff;white-space: nowrap;">
                                             Add
                                             Element
                                         </button>
+                                    </div>
+                                    <div class="p-2 text-white">
                                         <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
-                                            data-bs-target="#add_element_type" style="border: 1px solid #fff">
+                                            data-bs-target="#add_element_type"
+                                            style="border: 1px solid #fff;white-space: nowrap;">
                                             Add
                                             Element Type
                                         </button>
+                                    </div>
+                                    <div class="p-2 text-white">
                                         <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
                                             data-bs-target="#add_device_model_no" style="border: 1px solid #fff">
                                             Add
                                             Device Model No
+                                        </button>
+                                    </div>
+                                    <div class="p-2 text-white">
+                                        <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
+                                            data-bs-target="#add_device_part_no" style="border: 1px solid #fff">
+                                            Add
+                                            Device Part No
+                                        </button>
+                                    </div>
+                                    <div class="p-2 text-white">
+                                        <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
+                                            data-bs-target="#add_custom_input" style="border: 1px solid #fff">
+                                            Add Custom Input
                                         </button>
                                     </div>
                                 </div>
@@ -47,7 +66,7 @@
                 </div>
                 {{-- Element List --}}
                 <div class="card">
-                    <div class="card-body">
+                    {{-- <div class="card-body">
                         <h4 class="">Elements list</h4>
                         <table class="table table-bordered">
                             <thead class="text-white" style="background-color: #260950">
@@ -93,7 +112,8 @@
                                                                     @csrf
                                                                     @method('PUT')
                                                                     <div class="mb-3">
-                                                                        <label for="itemName" class="form-label">Enter new
+                                                                        <label for="itemName" class="form-label">Enter
+                                                                            new
                                                                             element name</label>
                                                                         <input type="text" class="form-control"
                                                                             id="itemName" name="name" value=""
@@ -151,7 +171,7 @@
 
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -187,8 +207,7 @@
     </div>
 
     <!--Add Element Type Modal -->
-    <div class="modal fade" id="add_element_type" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="add_element_type" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -238,7 +257,7 @@
                         @csrf
                         <div class="my-2">
                             <label for="" class="form-label">Select Element</label>
-                            <select name="element" class="form-select form-select-sm" id="element">
+                            <select name="element" class="form-select form-select-sm element">
                                 <option selected disabled>Element List:</option>
                                 @foreach ($element as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -248,12 +267,162 @@
                         </div>
                         <div class="mb-2">
                             <label for="" class="form-label">Select Type</label>
-                            <select name="" class="form-select form-select-sm" id="element_type"></select>
+                            <select name="element_type" class="form-select form-select-sm element_type"></select>
                         </div>
                         <div class="mb-2">
                             <label for="" class="form-label">Model No</label>
-                            <input type="text" class="form-control form-control-sm" placeholder="Enter model no">
+                            <input type="text" class="form-control form-control-sm" name="model_no"
+                                placeholder="OLED65C1PUB">
                         </div>
+                        <div class="mb-2">
+                            <label for="" class="form-label">Voltage</label>
+                            <input type="text" class="form-control form-control-sm" name="voltage"
+                                placeholder="Enter voltage">
+                        </div>
+                        <button type="submit" class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-sm" style="background-color: #260950">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Add device Part No -->
+    <div class="modal fade" id="add_device_part_no" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fs-5" id="exampleModalLabel">Add Device Part Number</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="device-part-model">
+                    <form action="{{ route('superadmin.part_no.store') }}" method="post">
+                        @csrf
+                        <div class="my-2">
+                            <label for="" class="form-label">Select Element</label>
+                            <select name="element" class="form-select form-select-sm element">
+                                <option selected disabled>Element List:</option>
+                                @foreach ($element as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="" class="form-label">Select Type</label>
+                            <select name="element_type" class="form-select form-select-sm element_type"></select>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="" class="form-label">Select Model No</label>
+                            <select name="model_no" class="form-select form-select-sm model-no">
+                            </select>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="" class="form-label">Enter Device Part No</label>
+                            <input type="text" class="form-control form-control-sm" name="device_part_no"
+                                placeholder="Enter device part no">
+                        </div>
+
+                        <button type="submit" class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-sm" style="background-color: #260950">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Add Custom Field  -->
+    <div class="modal fade" id="add_custom_input" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fs-5" id="exampleModalLabel">Add Custom Fields</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="device-part-model">
+                    <form action="{{ route('superadmin.customFields.store') }}" method="post">
+                        @csrf
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Select Element</label>
+                                <select name="element" class="form-select form-select-sm element">
+                                    <option selected disabled>Element List:</option>
+                                    @foreach ($element as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Select Type</label>
+                                <select name="element_type" class="form-select form-select-sm element_type"></select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Select Model No</label>
+                                <select name="model_no" class="form-select form-select-sm model-no">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Enter Device Part No</label>
+                                <select name="device_part_no" class="form-select form-select-sm partNo"></select>
+                            </div>
+                        </div>
+                        <div style="text-align:right">
+                            <span class="btn" style="background-color: #260950; color: white;" id="add_more">Add
+                                More</span>
+                        </div>
+                        <div id="dynamic_form">
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="" class="form-label">Select Column size</label>
+                                    <select name="col[]" class="form-select form-select-sm">
+                                        <option value="2">2</option>
+                                        <option value="4">4</option>
+                                        <option value="6">6</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="" class="form-label">Enter Input Label</label>
+                                    <input type="text" name="label[]" class="form-control form-control-sm"
+                                        placeholder="Enter input label">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="" class="form-label">Select Input Type</label>
+                                    <select name="input_type[]" class="form-select form-select-sm">
+                                        <option selected disabled>Select Option</option>
+                                        <option value="text">Text</option>
+                                        <option value="email">Email</option>
+                                        <option value="number">Number</option>
+                                        <option value="file">File</option>
+                                        <option value="select">Select</option>
+                                        <option value="radio">Radio</option>
+                                        <option value="date">Date</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 d-flex align-items-end">
+                                    <button type="button" class="btn btn-danger btn-sm remove-row">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <button type="submit" class="btn btn-sm me-2" style="background-color: #260950">Submit</button>
                     </form>
                 </div>
@@ -267,27 +436,143 @@
 
     <script>
         $(document).ready(function() {
-            const $element = $('#element');
+            const $element = $('.element');
             $element.on('change', function() {
-                alert($(this).val());
-                $('#element_type').empty();
+                const selectedValue = $(this).val();
+                console.log('Selected Value:', selectedValue); // Log the selected value for debugging
+                const $form = $(this).parents("form"); // Cache the form for reuse
+                const $elementType = $form.find(
+                    ".element_type"); // Target the dropdown within the same form
+
+                $elementType.empty(); // Clear previous options
+                $elementType.append('<option value="">Loading...</option>'); // Temporary loading indicator
+
                 $.ajax({
-                    url: `/superadmin/fetch/element-type/${$(this).val()}`,
+                    url: `/superadmin/fetch/element-type/${selectedValue}`,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        alert(data);
-                        data.forEach(type => {
-                            $('#element_type').append(`
-                                                 <option value="${type.id}">${type.type}</option>
-                                       `);
-                        });
+                        $elementType.empty(); // Clear loading message
+                        if (data && data.length > 0) {
+                            data.forEach(type => {
+                                $elementType.append(
+                                    `<option value="${type.id}">${type.type}</option>`
+                                );
+                            });
+                        } else {
+                            $elementType.append(
+                                '<option value="">No options available</option>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+                        $elementType.empty();
+                        $elementType.append('<option value="">Failed to load options</option>');
                     }
-                })
+                });
+            });
 
+            const $element_type = $('.element_type');
+            $element_type.on('change', function() {
+                alert($(this).val());
+                const $form = $(this).parents("form"); // Cache the form for reuse
+                const $model_no = $form.find(
+                    ".model-no"); // Target the dropdown within the same form
+                $model_no.empty(); // Clear previous options
+                $model_no.append('<option value="">Loading...</option>'); // Temporary loading indicator
+
+                $.ajax({
+                    url: `/superadmin/fetch/model-no/${$(this).val()}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $model_no.empty(); // Clear loading message
+                        if (data && data.length > 0) {
+                            data.forEach(modelNo => {
+                                $model_no.append(
+                                    `<option value="${modelNo.id}">${modelNo.model_no}</option>`
+                                );
+                            });
+                        } else {
+                            $model_no.append(
+                                '<option value="">No options available</option>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+                        $model_no.empty();
+                        $model_no.append('<option value="">Failed to load options</option>');
+                    }
+                });
+            })
+
+
+            const $modelNo = $('.model-no');
+            $modelNo.on('change', function() {
+                alert($(this).val());
+                const $form = $(this).parents("form"); // Cache the form for reuse
+                const $partNo = $form.find(
+                    ".partNo"); // Target the dropdown within the same form
+                $partNo.empty(); // Clear previous options
+                $partNo.append('<option value="">Loading...</option>'); // Temporary loading indicator
+
+
+                $.ajax({
+                    url: `/superadmin/fetch/part-no/${$(this).val()}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $partNo.empty(); // Clear loading message
+                        if (data && data.length > 0) {
+                            data.forEach(partlNo => {
+                                $partNo.append(
+                                    `<option value="${partlNo.id}">${partlNo.part_no}</option>`
+                                );
+                            });
+                        } else {
+                            $partNo.append(
+                                '<option value="">No options available</option>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error); // Log the error for debugging
+                        $partNo.empty();
+                        $partNo.append('<option value="">Failed to load options</option>');
+                    }
+                });
+
+            })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Add More Rows
+            $('#add_more').click(function() {
+                const $dynamicForm = $('#dynamic_form');
+
+                // Clone the first row
+                const $newRow = $dynamicForm.children().first().clone();
+
+                // Clear input values and reset dropdowns
+                $newRow.find('input').val('');
+                $newRow.find('select').prop('selectedIndex', 0);
+
+                // Append the new row to the container
+                $dynamicForm.append($newRow);
+            });
+
+            // Remove a row
+            $(document).on('click', '.remove-row', function() {
+                if ($('#dynamic_form .row').length > 1) {
+                    $(this).closest('.row').remove();
+                } else {
+                    alert('You must have at least one row.');
+                }
             });
         });
     </script>
+    {{-- the end --}}
 
 
     <script>
@@ -429,17 +714,4 @@
             $(this).closest('.row').remove(); // Removes the specific row
         });
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection

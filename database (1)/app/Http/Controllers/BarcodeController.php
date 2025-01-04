@@ -7,39 +7,40 @@ use App\Models\Barcode;
 use App\Models\Distributor;
 use App\Models\IMEINO;
 use App\Models\Element;
+use App\Models\BracodeCustomValue;
 class BarcodeController extends Controller
 {
 
     public function index()
     {
-        $barcode = Barcode::where('manuf_id', auth()->user()->id)->get()->groupBy('barcode_no');
+        $barcode = Barcode::with('elementType', 'modelNo')->where('manuf_id', auth()->user()->id)->get()->groupBy('barcode_no');
         return view('manufacturer.barcode')->with(compact('barcode'));
     }
     public function store(Request $request)
     {
         $data = $request->all();
         // dd($data);
-        unset($data["_token"]);
-        $element_id = $data['element'];
-        $barcode_no = $data['barcode'];
-        $imei = new IMEINO;
-        $imei->IMEI_NO = $barcode_no;
-        $imei->save();
-        unset($data["element"]);
-        print_r($data);
-        echo "<br>";
-        #echo $element_id;
 
+        $barcode = new Barcode;
+        $barcode->manuf_id = auth()->user()->id;
+        $barcode->element_id = $request['element'];
+        $barcode->type_id = $request['element_type'];
+        $barcode->model_id = $request['model_no'];
+        $barcode->part_id = $request['device_part_no'];
+        $barcode->serialNumber = $request['barcodeNo'];
+        $barcode->barcodeNo = $request['barcodeNo'];
+        $barcode->IMEINO = $request['barcodeNo'];
+        $barcode->BatchNo = $request['batchNo'];
+        $barcode->save();
+
+        unset($data['_token'], $data['element'], $data['element_type'], $data['model_no'], $data['device_part_no'], $data['voltage'], $data['batchNo'], $data['BarCodeCreationType'], $data['barcodeNo'], $data['is_renew'], $data['UniqueID']);
+        // dd($data);
         foreach ($data as $key => $value) {
-            ;
-            echo "" . $key . "" . $value . "<br>";
-            $barcode = new Barcode();
-            $barcode->manuf_id = auth()->user()->id;
-            $barcode->element_id = $element_id;
-            $barcode->label = $key;
-            $barcode->value = $value;
-            $barcode->barcode = $imei->id;
-            $barcode->save();
+            $customValue = new BracodeCustomValue;
+            $customValue->barcode_id = $barcode->id;
+            $customValue->customFieldId = $key;
+            $customValue->value = $value;
+            $customValue->save();
         }
 
         return redirect()->back()->with("success", "Barcode Created!");

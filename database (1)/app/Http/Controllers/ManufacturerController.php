@@ -11,6 +11,7 @@ use App\Models\ComponentOption;
 use App\Models\SubComponentValue_select;
 use App\Models\values_subcomponent;
 use Carbon\Carbon;
+use App\Models\Barcode;
 
 
 class ManufacturerController extends Controller
@@ -50,7 +51,8 @@ class ManufacturerController extends Controller
         $element = Element::all();
         $currentTime = Carbon::now()->setTimezone('Asia/Kolkata');
         $batchNo = $currentTime->format('YmdHis');
-        return view('manufacturer.managebarcode')->with(compact('element', 'batchNo'));
+        $barcode = Barcode::with('elementType', 'modelNo', 'partNo')->where('manuf_id', auth()->user()->id)->get();
+        return view('manufacturer.managebarcode')->with(compact('element', 'batchNo', 'barcode'));
     }
 
     public function fetchComponents($id)

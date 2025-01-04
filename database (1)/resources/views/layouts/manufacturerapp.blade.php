@@ -43,6 +43,20 @@
             border: 1px solid gray !important;
 
         }
+
+        /* Custom Tooltip Styling */
+        .tooltip-inner {
+            background-color: #4CAF50;
+            /* Green background */
+            color: #fff;
+            /* White text */
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .tooltip-arrow {
+            color: #4CAF50;
+        }
     </style>
 </head>
 

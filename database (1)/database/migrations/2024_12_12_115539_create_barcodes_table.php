@@ -16,8 +16,16 @@ return new class extends Migration {
             $table->foreign('manuf_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('element_id');
             $table->foreign('element_id')->references('id')->on('elements')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('label')->nullable();
-            $table->string('value')->nullable();
+            $table->unsignedBigInteger('type_id')->nullable();
+            $table->foreign('type_id')->nullable()->references('id')->on('element_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('model_id')->nullable();
+            $table->foreign('model_id')->nullable()->references('id')->on('device_model_nos')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('part_id')->nullable();
+            $table->foreign('part_id')->nullable()->references('id')->on('device_part_nos')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('serialNumber');
+            $table->string('barcodeNo');
+            $table->string('IMEINO');
+            $table->string('BatchNo');
             $table->timestamps();
         });
     }
